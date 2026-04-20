@@ -1,6 +1,6 @@
 # Course skills (Universitas Terbuka)
 
-**Gaya jawaban & persona bersama (struktur, nada, kosakata yang bisa di-tune):** [tutor-shared-style.md](./tutor-shared-style.md)
+**Gaya jawaban & persona:** [tutor-shared-style.md](./tutor-shared-style.md) (indeks singkat) · **mode asli vs tuned (WA):** [tutor-answer-modes.md](./tutor-answer-modes.md)
 
 | Mata kuliah                             | File skill                                                                                     |
 | --------------------------------------- | ---------------------------------------------------------------------------------------------- |

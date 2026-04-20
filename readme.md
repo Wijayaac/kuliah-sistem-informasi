@@ -11,7 +11,8 @@ Ini **bukan** repositori resmi UT; aturan penilaian, jadwal, dan tugas selalu me
 | Lokasi                                                                         | Fungsi                                                                                                                            |
 | ------------------------------------------------------------------------------ | --------------------------------------------------------------------------------------------------------------------------------- |
 | [`.cursor/skills/skills.md`](.cursor/skills/skills.md)                         | Indeks **skill per mata kuliah** (tautan ke file skill)                                                                           |
-| [`.cursor/skills/tutor-shared-style.md`](.cursor/skills/tutor-shared-style.md) | **Gaya jawaban bersama**: struktur, nada, persona (mis. senior engineer + e-commerce), dan **tabel kosakata** yang bisa Anda edit |
+| [`.cursor/skills/tutor-shared-style.md`](.cursor/skills/tutor-shared-style.md) | Indeks gaya: salam Menurut saya Terimakasih Sumber BMP persona aturan chat |
+| [`.cursor/skills/tutor-answer-modes.md`](.cursor/skills/tutor-answer-modes.md) | Mode jawaban **asli** (cepat) vs **tuned** (sedikit koma dan kata lebih rapi tanpa kaku) |
 | [`.cursor/skills/*-tutor-*.md`](.cursor/skills/)                               | Skill per kode mata kuliah: konteks BMP, sesi tuton, bobot nilai, kebijakan bantuan (kerangka vs jawaban siap kumpul)             |
 
 Di chat Cursor, Anda bisa memicu skill lewat deskripsi di frontmatter tiap file, atau dengan meminta eksplisit: _“pakai skill MKDI4203”_ / _“ikuti tutor-shared-style”_.
@@ -28,7 +29,7 @@ Ringkasan ada di [`skills.md`](.cursor/skills/skills.md). Saat ini mencakup anta
 
 1. **Salin** salah satu `*-tutor-*.md` yang strukturnya mirip, lalu ganti judul, kode, BMP, capaian, dan aturan tuton dari silabus/RAT Anda.
 2. **Perbarui** [`.cursor/skills/skills.md`](.cursor/skills/skills.md): tambahkan baris di tabel + satu frasa di baris **Ringkas** bila perlu.
-3. **Jangan menyalin** gaya jawaban panjang ke setiap file: biarkan [tutor-shared-style.md](.cursor/skills/tutor-shared-style.md) yang mengatur persona dan kosakata; skill cukup merujuk konteks kursus.
+3. **Jangan menyalin** gaya jawaban panjang ke setiap file: persona dan mode asli atau tuned di [tutor-shared-style.md](.cursor/skills/tutor-shared-style.md) dan [tutor-answer-modes.md](.cursor/skills/tutor-answer-modes.md); skill cukup merujuk konteks kursus.
 4. Opsional: simpan **template prompt** Anda (mis. format soal–jawab) di file baru di root repo dan tautkan dari README ini jika dipakai rutin.
 
 ---
