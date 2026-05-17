@@ -102,9 +102,49 @@ Hipotesis berikut diajukan sebagai pernyataan kerja yang akan dibandingkan denga
 
 ## BAB III METODE PENELITIAN
 
-### 3.1. Metode Penelitian
+3.1. Metode Penelitian
 
-### 3.2. Teknik Pengumpulan Data dan Instrumen Penelitian Elemen Proposal
+Penelitian ini menggunakan pendekatan kuantitatif dengan desain deskriptif korelasional. Desain tersebut dipilih karena tujuan utama kajian adalah mengidentifikasi hubungan antara penerapan section promosi dalam sistem informasi penjualan (variabel bebas) dengan conversion rate (variabel dependen), bukan untuk membangun model kausal eksperimental terkontrol. Data dikumpulkan pada satu periode waktu (cross-sectional) sehingga hubungan antarvariabel dapat diuji secara empiris melalui analisis statistik inferensial pada Bab IV.
+
+Populasi dan sampel. Populasi penelitian dibatasi pada toko daring yang dikelola dalam lingkungan kerja klien peneliti, dengan jumlah keseluruhan di bawah 20 toko dan menggunakan sistem informasi penjualan yang relatif seragam (platform, alur checkout, serta modul promosi on-page). Unit analisis adalah toko daring (bukan individu pembeli), agar conversion rate dan konfigurasi section promosi dapat dipetakan secara konsisten per unit observasi.
+
+Sampel ditetapkan dengan teknik purposive sampling pada populasi klien tersebut. Toko dimasukkan apabila memenuhi kriteria: (1) aktif beroperasi minimal tiga bulan sebelum periode pengamatan; (2) data conversion rate atau metrik setara (transaksi dibagi kunjungan atau sesi) tersedia dan dapat diekspor untuk periode yang sama; (3) halaman produk, keranjang, atau checkout dapat diobservasi untuk keberadaan dan karakteristik section promosi yang diteliti. Target partisipasi direncanakan 10–15 toko dari total populasi di bawah 20 toko, bergantung pada kelengkapan data analytics dan kesediaan akses observasi. Jika sebagian toko tidak memenuhi kriteria, penelitian tetap dilanjutkan dengan unit yang data dan antarmukanya lengkap, dengan catatan jumlah sampel aktual dilaporkan pada bab analisis.
+
+Karena ukuran sampel relatif kecil, penelitian ini diposisikan sebagai studi pada konteks portofolio klien (case portfolio) dengan generalisasi terbatas ke populasi toko daring secara luas. Pengujian hipotesis pada Bab IV diarahkan pada analisis korelasi bivariat (dan regresi sederhana per variabel bebas bila asumsi terpenuhi), bukan regresi berganda simultan dengan lima prediktor, mengingat kaidah ukuran sampel untuk model multivariat dengan banyak prediktor tidak terpenuhi pada skala 10–15 observasi.
+
+Definisi operasional dan pengukuran variabel. Variabel dependen adalah conversion rate (Y), dioperasionalkan sebagai rasio jumlah transaksi selesai (atau order paid) terhadap jumlah sesi atau kunjungan unik pada periode pengamatan yang sama, diambil dari dashboard analytics toko, dengan skala rasio (0–1) atau persen.
+
+Variabel bebas pertama, upsell (X1), dioperasionalkan sebagai keberadaan dan intensitas section yang menawarkan produk alternatif bernilai lebih tinggi pada halaman produk, keranjang, atau checkout, diukur dengan skor indeks (0 = tidak ada; 1–3 = ada dengan kedalaman konten rendah hingga tinggi).
+
+Variabel bebas kedua, timer countdown (X2), dioperasionalkan sebagai keberadaan penghitung waktu mundur yang terkait promosi pada halaman penjualan, diukur secara dikotom (0 = tidak ada; 1 = ada) atau skor penempatan (halaman produk, keranjang, atau checkout).
+
+Variabel bebas ketiga, hadiah gratis atau BOGO (X3), dioperasionalkan sebagai penampilan blok promosi hadiah gratis atau skema beli-satu-dapat-satu pada antarmuka penjualan, diukur secara dikotom atau skor kejelasan syarat dan visibilitas.
+
+Variabel bebas keempat, unique selling point atau USP (X4), dioperasionalkan sebagai penyampaian proposisi nilai melalui blok teks, ikon jaminan, atau bukti sosial dekat judul produk dan harga, diukur dengan skor rubrik kualitas (kelengkapan, kejelasan, relevansi).
+
+Variabel bebas kelima, produk berelasi (X5), dioperasionalkan sebagai penyajian rekomendasi cross-sell atau produk terkait pada halaman produk atau keranjang, diukur dengan skor indeks (jumlah rekomendasi, relevansi label, posisi tampilan).
+
+Pengukuran variabel bebas dilakukan melalui observasi terstruktur terhadap antarmuka toko (audit on-page) oleh peneliti, dengan pedoman rubrik yang disepakati sebelumnya agar konsisten antar unit. Conversion rate diambil dari data analytics resmi yang disediakan klien atau pengelola toko (ekspor dashboard platform) untuk periode yang diselaraskan dengan tanggal observasi (misalnya 30 hari terakhir). Keseragaman platform pada portofolio klien diharapkan mengurangi perbedaan teknis yang tidak terkait section promosi, meskipun perbedaan kategori produk dan volume trafik antar toko tetap dicatat pada metadata.
+
+Prosedur penelitian. Tahapan pelaksanaan meliputi: (1) koordinasi dengan klien untuk daftar toko, izin akses data, dan periode pengamatan; (2) penyusunan serta uji coba singkat instrumen observasi pada 2–3 toko percontohan dari portofolio yang sama; (3) observasi antarmuka dan pengumpulan data conversion rate untuk 10–15 toko; (4) pembersihan data (outlier, missing value); (5) analisis statistik pada Bab IV (deskriptif, korelasi Pearson atau Spearman per pasangan variabel, regresi linear sederhana bila relevan, serta uji asumsi yang memungkinkan pada sampel kecil). Etika penelitian: data analytics digunakan berdasarkan persetujuan klien dan pengelola toko; identitas toko dianonimkan dalam laporan akademik.
+
+Batasan metode. Penelitian tidak memanipulasi section promosi secara eksperimental di lapangan; hubungan yang teridentifikasi bersifat asosiatif, bukan bukti sebab-akibat mutlak. Sampel terbatas pada portofolio klien (10–15 toko dari kurang dari 20 toko), sehingga temuan lebih tepat diinterpretasikan sebagai pola pada konteks tersebut daripada generalisasi nasional. Kampanye iklan di luar platform (media sosial, iklan berbayar) tidak dimasukkan sebagai variabel utama, meskipun dapat dicatat sebagai variabel kontrol deskriptif jika data tersedia.
+
+3.2. Teknik Pengumpulan Data dan Instrumen Penelitian
+
+Teknik pengumpulan data. Penelitian memadukan dua teknik utama, dengan sumber data utama melalui kerja sama klien. Pertama, observasi terstruktur (audit antarmuka). Peneliti mengunjungi URL masing-masing toko dalam portofolio klien dan mencatat keberadaan serta karakteristik lima jenis section promosi sesuai rubrik. Observasi dilakukan pada halaman produk representatif (produk terlaris atau landing utama), halaman keranjang, dan checkout jika dapat diakses tanpa pembayaran, agar seluruh titik kontak promosi on-page terwakili. Kedua, pengumpulan data sekunder (analytics). Conversion rate dan metrik pendukung (jumlah sesi, jumlah order) diperoleh dari ekspor laporan dashboard yang disediakan klien atau tim pengelola toko, untuk periode yang sama dengan observasi. Karena jumlah toko terbatas, seluruh toko yang memenuhi kriteria berpeluang masuk sampel (mendekati sensus pada populasi klien), bukan pengambilan acak dari banyak merchant di luar portofolio.
+
+Wawancara singkat terstruktur kepada pengelola toko atau perwakilan klien dapat dilakukan bila diperlukan untuk memastikan definisi conversion rate yang dipakai platform dan mencatat variabel kontrol (jenis produk, rata-rata harga, volume trafik).
+
+Instrumen penelitian. Instrumen pertama adalah lembar observasi section promosi (checklist dan rubrik). Berisi item per variabel bebas: indikator upsell (lokasi, jumlah opsi, kejelasan ajakan bertindak); countdown (ada atau tidak, posisi, keterkaitan dengan promosi); BOGO atau hadiah gratis (jenis skema, syarat terbaca); USP (jumlah poin diferensiasi, bukti sosial, jaminan); produk berelasi (modul rekomendasi, label, jumlah item). Setiap item diberi skor numerik; total skor per konstruk dijumlahkan atau dirata-rata menjadi nilai X1 hingga X5.
+
+Instrumen kedua adalah formulir metadata toko, yang mencatat platform sistem penjualan, kategori produk utama, lama operasi daring, dan periode laporan analytics yang diserahkan, agar homogenitas sampel dan interpretasi conversion rate lebih terkontrol.
+
+Instrumen ketiga adalah formulir data conversion rate, berisi periode pengamatan, jumlah sesi atau kunjungan, jumlah transaksi atau order, conversion rate terhitung, dan sumber data (nama modul analytics). Data diisi berdasarkan ekspor resmi dari klien atau pengelola toko, lalu diverifikasi peneliti untuk konsistensi periode dengan tanggal observasi.
+
+Validitas dan reliabilitas instrumen. Validitas isi diperkuat dengan merujuk literatur pada Bab II dan uji ahli (dosen pembimbing atau praktisi e-commerce) terhadap rubrik observasi sebelum pengumpulan data utama. Reliabilitas inter-observer diuji dengan koefisien kesepakatan (Cohen’s kappa atau intraclass correlation) apabila dua orang mengobservasi subsampel toko yang sama. Konsistensi internal skor rubrik dapat diuji dengan Cronbach’s alpha jika item cukup banyak per konstruk.
+
+Jadwal pengumpulan data (rencana). Minggu 1: koordinasi dengan klien, inventaris toko (kurang dari 20 unit), dan penetapan periode analytics; minggu 2: finalisasi instrumen dan uji coba pada 2–3 toko; minggu 3–4: observasi antarmuka serta pengumpulan data conversion rate untuk 10–15 toko; minggu 5: entry data, pembersihan, dan persiapan analisis Bab IV.
 
 ## BAB IV ANALISIS DATA DAN KESIMPULAN SEMENTARA
 
@@ -119,6 +159,8 @@ Referensi berikut disusun mengikuti kaidah American Psychological Association (A
 Cialdini, R. B. (2021). Influence: Science and practice (5th ed.). Pearson.
 
 Davis, F. D. (1989). Perceived usefulness, perceived ease of use, and user acceptance of information technology. MIS Quarterly, 13(3), 319–340. https://doi.org/10.2307/249008
+
+Hair, J. F., Black, W. C., Babin, B. J., & Anderson, R. E. (2019). Multivariate data analysis (8th ed.). Cengage.
 
 Kotler, P., & Keller, K. L. (2016). Marketing management (15th ed.). Pearson.
 
