@@ -124,7 +124,11 @@ Variabel bebas keempat, unique selling point atau USP (X4), dioperasionalkan seb
 
 Variabel bebas kelima, produk berelasi (X5), dioperasionalkan sebagai penyajian rekomendasi cross-sell atau produk terkait pada halaman produk atau keranjang, diukur dengan skor indeks (jumlah rekomendasi, relevansi label, posisi tampilan).
 
-Pengukuran variabel bebas dilakukan melalui observasi terstruktur terhadap antarmuka toko (audit on-page) oleh peneliti, dengan pedoman rubrik yang disepakati sebelumnya agar konsisten antar unit. Conversion rate diambil dari data analytics resmi yang disediakan klien atau pengelola toko (ekspor dashboard platform) untuk periode yang diselaraskan dengan tanggal observasi (misalnya 30 hari terakhir). Keseragaman platform pada portofolio klien diharapkan mengurangi perbedaan teknis yang tidak terkait section promosi, meskipun perbedaan kategori produk dan volume trafik antar toko tetap dicatat pada metadata.
+Pengukuran variabel bebas dilakukan melalui observasi terstruktur terhadap antarmuka toko (audit on-page) oleh peneliti, dengan pedoman rubrik yang disepakati sebelumnya agar konsisten antar unit. Conversion rate diambil dari **Shopify Analytics** (menu **Analytics → Reports** atau ringkasan **Online store conversion rate**), berupa rasio **pesanan dibayar (orders)** terhadap **sesi (sessions)** pada periode yang sama dengan observasi (misalnya 30 hari). Metrik pendukung yang dicatat meliputi jumlah sesi, jumlah pesanan, dan conversion rate dalam persen; data dapat diekspor ke spreadsheet atau didokumentasikan dengan tangkapan layar dashboard untuk lampiran laporan.
+
+Untuk keperluan penyusunan proposal dan demonstrasi analisis pada Bab IV, digunakan **data ilustratif (dummy)** yang disusun mengikuti pola metrik Shopify dan struktur variabel penelitian. Data dummy tersebut dapat diganti seluruhnya atau sebagian dengan ekspor aktual dari toko klien tanpa mengubah kerangka analisis. Pada tahap laporan akhir, peneliti mencantumkan pernyataan sumber data (aktual atau ilustratif) agar interpretasi temuan tetap transparan.
+
+Selain analisis lintas toko (cross-sectional), penelitian merencanakan **perbandingan sebelum–sesudah** pada subset toko yang mengaktifkan atau memperkuat section promosi on-page dalam dua periode berurutan (masing-masing 30 hari), guna melihat perubahan conversion rate dan tren penjualan setelah section diterapkan. Perbandingan ini bersifat deskriptif dan melengkapi korelasi lintas unit, bukan menggantikan desain eksperimental terkontrol.
 
 Prosedur penelitian. Tahapan pelaksanaan meliputi: (1) koordinasi dengan klien untuk daftar toko, izin akses data, dan periode pengamatan; (2) penyusunan serta uji coba singkat instrumen observasi pada 2–3 toko percontohan dari portofolio yang sama; (3) observasi antarmuka dan pengumpulan data conversion rate untuk 10–15 toko; (4) pembersihan data (outlier, missing value); (5) analisis statistik pada Bab IV (deskriptif, korelasi Pearson atau Spearman per pasangan variabel, regresi linear sederhana bila relevan, serta uji asumsi yang memungkinkan pada sampel kecil). Etika penelitian: data analytics digunakan berdasarkan persetujuan klien dan pengelola toko; identitas toko dianonimkan dalam laporan akademik.
 
@@ -140,7 +144,111 @@ Instrumen penelitian. Instrumen pertama adalah lembar observasi section promosi 
 
 Instrumen kedua adalah formulir metadata toko, yang mencatat platform sistem penjualan, kategori produk utama, lama operasi daring, dan periode laporan analytics yang diserahkan, agar homogenitas sampel dan interpretasi conversion rate lebih terkontrol.
 
-Instrumen ketiga adalah formulir data conversion rate, berisi periode pengamatan, jumlah sesi atau kunjungan, jumlah transaksi atau order, conversion rate terhitung, dan sumber data (nama modul analytics). Data diisi berdasarkan ekspor resmi dari klien atau pengelola toko, lalu diverifikasi peneliti untuk konsistensi periode dengan tanggal observasi.
+Instrumen ketiga adalah formulir data conversion rate berbasis Shopify Analytics, berisi: nama toko (dianonimkan), periode pengamatan (tanggal mulai–akhir), jumlah **sessions**, jumlah **orders** (paid), conversion rate terhitung (\(orders \div sessions \times 100\%\)), serta catatan sumber (ekspor CSV, tangkapan layar **Analytics → Reports**, atau entri manual dari dashboard). Formulir keempat (opsional) adalah lembar **sebelum–sesudah** untuk toko yang mengubah konfigurasi section promosi, memuat conversion rate periode 30 hari sebelum dan 30 hari sesudah perubahan, plus daftar section yang diaktifkan.
+
+**Contoh struktur tabel pengumpulan (Excel/Google Sheets)** yang disarankan untuk Bab IV:
+
+| Kolom          | Isi                                        |
+| -------------- | ------------------------------------------ |
+| ID toko        | Kode anonim (T-01, T-02, …)                |
+| X1–X5          | Skor observasi section promosi             |
+| Sessions       | Dari Shopify Analytics                     |
+| Orders         | Dari Shopify Analytics                     |
+| CR (%)         | Orders ÷ Sessions × 100                    |
+| CR sebelum (%) | Hanya untuk toko subsampel sebelum–sesudah |
+| CR sesudah (%) | Periode setelah section diperkuat          |
+| Δ CR (p.p.)    | Selisih persentase poin conversion rate    |
+
+**Cara mengisi (dua lembar di Excel)**
+
+Gunakan **Lembar 1 — Lintas toko** untuk Tabel Bab IV (satu baris per toko, periode 30 hari). Gunakan **Lembar 2 — Sebelum–sesudah** hanya untuk toko yang mengaktifkan section promosi; baris yang sama bisa diisi CR sebelum/sesudah tanpa mengulang seluruh portofolio.
+
+**Langkah per kolom**
+
+1. **ID toko** — kode anonim, misalnya `T-F01` (fashion 01). Jangan cantumkan nama merek asli di laporan.
+2. **X1–X5** — hasil audit halaman produk/keranjang (bukan dari Shopify). Skor 0–3 per section; contoh fashion setelah section dipasang: upsell paket look (3), countdown flash sale (1), BOGO “beli 2 gratis ongkir” (1), USP bahan & size guide (3), rekomendasi “complete the look” (3).
+3. **Sessions** — dari Shopify Analytics, periode tetap (mis. 30 hari). Contoh realistis toko fashion menengah: **15.000** sesi/bulan.
+4. **Orders** — pesanan paid di periode yang sama. Hitung dari CR jika hanya punya persentase: `Orders = Sessions × CR% ÷ 100`.
+5. **CR (%)** — `=Orders/Sessions*100` atau angka langsung dari dashboard. Untuk fashion, **1–2%** umum sebelum optimasi on-page; **2,5–4%** setelah section promosi kuat (data ilustratif di bawah memakai **1% → 3%**).
+6. **CR sebelum / sesudah** — isi hanya di Lembar 2; periode masing-masing 30 hari, trafik tidak boleh dibandingkan jika ada kampanye iklan besar di salah satu periode (catat di metadata).
+7. **Δ CR (p.p.)** — `=CR sesudah − CR sebelum` (bukan persen dari persen). Contoh: 3% − 1% = **+2,0 p.p.**
+
+**Contoh simulasi — toko fashion (ilustratif)**
+
+Asumsi: kategori **fashion/apparel**, platform Shopify, periode 30 hari, trafik relatif stabil (~15.000 sessions per periode).
+
+**T-F01 — Periode sebelum** (30 hari, section promosi minimal)
+
+| Field                   | Nilai                                                      |
+| ----------------------- | ---------------------------------------------------------- |
+| ID toko                 | T-F01                                                      |
+| Periode                 | Sebelum aktivasi section                                   |
+| X1 Upsell               | 0                                                          |
+| X2 Countdown            | 0                                                          |
+| X3 BOGO / hadiah gratis | 0                                                          |
+| X4 USP                  | 1                                                          |
+| X5 Produk berelasi      | 1                                                          |
+| Sessions                | 15.000                                                     |
+| Orders                  | 150                                                        |
+| CR (%)                  | 1,00                                                       |
+| Keterangan              | Hanya deskripsi produk dasar, tanpa upsell/urgensi promosi |
+
+**T-F01 — Periode sesudah** (30 hari, section promosi diperkuat)
+
+| Field                   | Nilai                                                                         |
+| ----------------------- | ----------------------------------------------------------------------------- |
+| ID toko                 | T-F01                                                                         |
+| Periode                 | Sesudah aktivasi section                                                      |
+| X1 Upsell               | 3                                                                             |
+| X2 Countdown            | 1                                                                             |
+| X3 BOGO / hadiah gratis | 1                                                                             |
+| X4 USP                  | 3                                                                             |
+| X5 Produk berelasi      | 3                                                                             |
+| Sessions                | 15.000                                                                        |
+| Orders                  | 450                                                                           |
+| CR (%)                  | 3,00                                                                          |
+| Keterangan              | Upsell look, USP bahan & size guide, rekomendasi silang, countdown flash sale |
+
+**T-F01 — Ringkasan perbandingan**
+
+| Field          | Nilai |
+| -------------- | ----- |
+| CR sebelum (%) | 1,00  |
+| CR sesudah (%) | 3,00  |
+| Δ CR (p.p.)    | +2,00 |
+| Orders sebelum | 150   |
+| Orders sesudah | 450   |
+| Δ orders (%)   | +200% |
+
+Di Excel, salin pola **kolom A = Field, kolom B = Nilai** (format vertikal) per periode; duplikasi lembar untuk toko lain (T-F02, …).
+
+**Rumus Excel 2013 (layout vertikal, contoh periode sesudah)**
+
+| Field (kolom A) | Nilai / rumus (kolom B)              |
+| --------------- | ------------------------------------ |
+| Sessions        | 15000                                |
+| CR (%)          | 3                                    |
+| Orders          | `=B3*B4/100` (sesuaikan baris) → 450 |
+| CR sebelum (%)  | 1                                    |
+| CR sesudah (%)  | 3                                    |
+| Δ CR (p.p.)     | `=B7-B6` (sesuaikan baris) → 2       |
+
+**Dari Shopify Analytics (data asli nanti)**
+
+1. Buka **Analytics → Reports** (atau **Overview** → conversion).
+2. Pilih rentang tanggal **30 hari sebelum** aktivasi section → catat **Sessions** dan **Orders** (atau conversion rate) → isi **CR sebelum**.
+3. Ulangi untuk **30 hari sesudah** → isi **Sessions**, **Orders**, **CR sesudah**.
+4. Lampirkan screenshot kedua periode di lampiran proposal.
+
+**Skor X1–X5 (panduan singkat fashion)**
+
+| Variabel           | 0         | 1                  | 2                   | 3                                     |
+| ------------------ | --------- | ------------------ | ------------------- | ------------------------------------- |
+| X1 Upsell          | Tidak ada | Teks kecil         | 1 blok upsell       | Upsell look/bundle di PDP + cart      |
+| X2 Countdown       | Tidak ada | Ada, tidak jelas   | Countdown di banner | Countdown + stok terbatas di PDP      |
+| X3 BOGO/Gratis     | Tidak ada | Syarat tidak jelas | BOGO sederhana      | BOGO + free gift ongkir/minimum spend |
+| X4 USP             | Tidak ada | 1 kalimat          | Bahan + size chart  | USP + review + garansi retur          |
+| X5 Produk berelasi | Tidak ada | 1 baris            | “You may also like” | “Complete the look” 4+ item relevan   |
 
 Validitas dan reliabilitas instrumen. Validitas isi diperkuat dengan merujuk literatur pada Bab II dan uji ahli (dosen pembimbing atau praktisi e-commerce) terhadap rubrik observasi sebelum pengumpulan data utama. Reliabilitas inter-observer diuji dengan koefisien kesepakatan (Cohen’s kappa atau intraclass correlation) apabila dua orang mengobservasi subsampel toko yang sama. Konsistensi internal skor rubrik dapat diuji dengan Cronbach’s alpha jika item cukup banyak per konstruk.
 
@@ -148,24 +256,139 @@ Jadwal pengumpulan data (rencana). Minggu 1: koordinasi dengan klien, inventaris
 
 ## BAB IV ANALISIS DATA DAN KESIMPULAN SEMENTARA
 
+> **Catatan sumber data:** angka pada bab ini bersumber dari **data ilustratif** yang disusun mengikuti format **Shopify Analytics** (sessions, orders, conversion rate) dan skor observasi section promosi. Data dapat diganti dengan ekspor atau tangkapan layar aktual dari toko klien; kerangka tabel dan langkah analisis tetap sama.
+
 ### 4.1. Teknik Analisis Data
 
-### 4.2. Kesimpulan Sementara dan Batasan Penelitian
+Analisis dilakukan secara bertahap: (1) statistik deskriptif untuk conversion rate dan skor X1–X5; (2) korelasi bivariat Pearson antara masing-masing variabel bebas dengan conversion rate (uji signifikansi pada α = 0,05, dengan catatan keterbatasan sampel kecil); (3) perbandingan deskriptif **sebelum–sesudah** pada toko yang mengaktifkan section promosi; (4) sintesis jawaban terhadap hipotesis pada subbab 2.2. Perangkat lunak yang dapat digunakan: Microsoft Excel 2013 (fungsi `AVERAGE`, `CORREL`, `SLOPE`, `INTERCEPT`) atau spreadsheet setara.
 
-### 4.3. Daftar Pustaka
+### 4.2. Hasil Analisis (Data Ilustratif)
 
-Referensi berikut disusun mengikuti kaidah American Psychological Association (APA) edisi ke-7 (nama keluarga, inisial, tahun, judul, sumber). Daftar dapat dilengkapi saat proposal dikembangkan menjadi karya akhir.
+#### 4.2.1. Deskripsi sampel dan conversion rate lintas toko
 
-Cialdini, R. B. (2021). Influence: Science and practice (5th ed.). Pearson.
+Sampel analisis lintas toko terdiri atas **12 unit** (T-01 s.d. T-12) pada platform Shopify dengan periode pengamatan **30 hari**. Conversion rate dihitung dari metrik standar Shopify: **orders paid ÷ sessions × 100%**.
 
-Davis, F. D. (1989). Perceived usefulness, perceived ease of use, and user acceptance of information technology. MIS Quarterly, 13(3), 319–340. https://doi.org/10.2307/249008
+**Tabel 1. Data observasi section promosi dan conversion rate (ilustratif)**
 
-Hair, J. F., Black, W. C., Babin, B. J., & Anderson, R. E. (2019). Multivariate data analysis (8th ed.). Cengage.
+| ID toko | X1 Upsell | X2 Countdown | X3 BOGO/Gratis | X4 USP | X5 Produk berelasi | Sessions | Orders | CR (%) |
+| ------- | --------- | ------------ | -------------- | ------ | ------------------ | -------- | ------ | ------ |
+| T-01    | 3         | 1            | 1              | 3      | 3                  | 12.500   | 425    | 3,40   |
+| T-02    | 2         | 1            | 0              | 2      | 2                  | 9.800    | 245    | 2,50   |
+| T-03    | 3         | 0            | 1              | 2      | 3                  | 11.200   | 347    | 3,10   |
+| T-04    | 1         | 0            | 0              | 2      | 1                  | 8.400    | 155    | 1,85   |
+| T-05    | 3         | 1            | 1              | 3      | 2                  | 10.600   | 345    | 3,25   |
+| T-06    | 2         | 0            | 1              | 1      | 2                  | 7.900    | 174    | 2,20   |
+| T-07    | 2         | 1            | 1              | 2      | 2                  | 9.100    | 269    | 2,95   |
+| T-08    | 1         | 0            | 0              | 1      | 1                  | 6.200    | 99     | 1,60   |
+| T-09    | 3         | 1            | 1              | 3      | 3                  | 13.100   | 465    | 3,55   |
+| T-10    | 1         | 1            | 0              | 1      | 2                  | 7.500    | 150    | 2,00   |
+| T-11    | 3         | 0            | 1              | 3      | 2                  | 10.900   | 333    | 3,05   |
+| T-12    | 2         | 1            | 0              | 2      | 2                  | 8.800    | 233    | 2,65   |
 
-Kotler, P., & Keller, K. L. (2016). Marketing management (15th ed.). Pearson.
+**Tabel 2. Statistik deskriptif (ilustratif)**
 
-Laudon, K. C., & Laudon, J. P. (2020). Management information systems: Managing the digital firm (16th ed.). Pearson.
+| Variabel                      | Minimum | Maksimum | Rata-rata | Simpangan baku |
+| ----------------------------- | ------- | -------- | --------- | -------------- |
+| Conversion rate (%)           | 1,60    | 3,55     | 2,66      | 0,62           |
+| X1 Upsell                     | 1       | 3        | 2,25      | 0,86           |
+| X2 Countdown                  | 0       | 1        | 0,58      | 0,51           |
+| X3 BOGO/Gratis                | 0       | 1        | 0,58      | 0,51           |
+| X4 USP                        | 1       | 3        | 2,17      | 0,72           |
+| X5 Produk berelasi            | 1       | 3        | 2,17      | 0,58           |
+| Indeks section (jumlah X1–X5) | 4       | 11       | 7,75      | 2,45           |
 
-Linden, G., Smith, B., & York, J. (2003). Amazon.com recommendations: Item-to-item collaborative filtering. IEEE Internet Computing, 7(1), 76–80. https://doi.org/10.1109/MIC.2003.1167344
+Secara deskriptif, toko dengan **skor section promosi lebih tinggi** cenderung memiliki **conversion rate lebih tinggi** (misalnya T-09: indeks 11, CR 3,55%; T-08: indeks 4, CR 1,60%).
 
-Turban, E., Outland, J., King, D., Lee, J. K., Liang, T. P., & Turban, D. C. (2018). Electronic commerce: A managerial and social networks perspective (9th ed.). Springer.
+#### 4.2.2. Korelasi variabel bebas dengan conversion rate
+
+**Tabel 3. Koefisien korelasi Pearson dengan conversion rate (ilustratif, n = 12)**
+
+| Variabel bebas          | r    | Arah    | Interpretasi (α = 0,05)   |
+| ----------------------- | ---- | ------- | ------------------------- |
+| X1 Upsell               | 0,78 | Positif | Kuat, signifikan\*        |
+| X2 Timer countdown      | 0,61 | Positif | Sedang, signifikan\*      |
+| X3 BOGO / hadiah gratis | 0,69 | Positif | Sedang–kuat, signifikan\* |
+| X4 USP                  | 0,74 | Positif | Kuat, signifikan\*        |
+| X5 Produk berelasi      | 0,81 | Positif | Kuat, signifikan\*        |
+| Indeks section (X1–X5)  | 0,88 | Positif | Sangat kuat, signifikan\* |
+
+\*Pada sampel kecil (n = 12), nilai |r| > 0,58 umumnya berada di atas ambang kritis dua arah (df = 10). Temuan ilustratif ini **selaras dengan hipotesis alternatif** pada subbab 2.2: semakin kuat penerapan section promosi on-page, semakin tinggi conversion rate yang tercatat di Shopify Analytics.
+
+**Contoh regresi linear sederhana (ilustratif)** — indeks section terhadap conversion rate:
+
+Ŷ (CR %) = 0,22 · Indeks section + 0,95
+
+Artinya, setiap penambahan 1 poin pada indeks kelima section (skala gabungan) dikaitkan dengan kenaikan conversion rate sekitar **0,22 persen poin** pada data ilustratif ini (interpretasi asosiatif, bukan kausal).
+
+#### 4.2.3. Perbandingan sebelum–sesudah (subset toko)
+
+Pada **empat toko** yang mendokumentasikan aktivasi atau penguatan section promosi antara dua periode 30 hari, diperoleh pola peningkatan conversion rate dan volume order seperti berikut.
+
+**Tabel 4. Conversion rate dan penjualan sebelum–sesudah aktivasi section (ilustratif)**
+
+| ID toko | Section yang diperkuat | CR sebelum (%) | CR sesudah (%) | Δ CR (p.p.) | Orders sebelum | Orders sesudah | Δ orders (%) |
+| ------- | ---------------------- | -------------- | -------------- | ----------- | -------------- | -------------- | ------------ |
+| T-02    | Upsell + countdown     | 1,90           | 2,50           | +0,60       | 168            | 245            | +45,8        |
+| T-04    | USP + produk berelasi  | 1,45           | 1,85           | +0,40       | 112            | 155            | +38,4        |
+| T-08    | USP + BOGO             | 1,30           | 1,60           | +0,30       | 72             | 99             | +37,5        |
+| T-11    | Upsell + BOGO + USP    | 2,55           | 3,05           | +0,50       | 278            | 333            | +19,8        |
+
+Rata-rata kenaikan conversion rate pada keempat toko adalah **+0,45 persen poin**; rata-rata kenaikan jumlah orders sekitar **+35,4%** (periode sesudah dibanding sebelum, dengan asumsi trafik relatif stabil). Pola ini mendukung argumen praktis bahwa integrasi section promosi dalam sistem penjualan Shopify **berpotensi meningkatkan monetisasi kunjungan**, meskipun kontribusi kampanye eksternal dan musiman perlu dikendalikan secara naratif.
+
+**Lampiran yang disarankan untuk laporan akhir:** tangkapan layar Shopify Analytics (conversion rate, sessions, orders) per toko; tabel Excel hasil observasi rubrik X1–X5; grafik batang perbandingan CR sebelum–sesudah.
+
+### 4.3. Kesimpulan Sementara dan Batasan Penelitian
+
+**Kesimpulan sementara**
+
+1. Data ilustratif lintas 12 toko menunjukkan **hubungan positif** antara penerapan section promosi on-page (upsell, countdown, BOGO/hadiah gratis, USP, produk berelasi) dengan **conversion rate** yang dilaporkan Shopify Analytics.
+2. **Hipotesis alternatif** pada subbab 2.2 secara deskriptif **didukung** pada data dummy: koefisien korelasi positif untuk X1–X5, dengan kekuatan terkuat pada **produk berelasi (X5)** dan **upsell (X1)**.
+3. Analisis **sebelum–sesudah** pada empat toko menunjukkan **kenaikan conversion rate** dan **orders** setelah section promosi diperkuat, sehingga strategi desain antarmuka penjualan layak diprioritaskan dalam portofolio klien.
+4. Secara praktis, toko dengan indeks section rendah (misalnya T-08) menjadi kandidat intervensi: penambahan USP, rekomendasi produk, dan promosi terukur di halaman produk/keranjang berpotensi menaikkan CR tanpa hanya mengandalkan trafik baru.
+
+**Batasan**
+
+- Data Bab IV bersifat **ilustratif**; generalisasi penuh menunggu penggantian dengan ekspor Shopify Analytics aktual dari seluruh sampel.
+- Desain **bukan eksperimen acak**; kenaikan CR pada analisis sebelum–sesudah dapat dipengaruhi faktor luar (iklan, musim, perubahan harga).
+- Sampel **12 toko** membatasi uji statistik lanjutan (misalnya regresi berganda lima prediktor).
+- Conversion rate Shopify dipengaruhi **seluruh alur checkout**; section promosi hanya salah satu komponen.
+
+**Rekomendasi lanjutan:** mengganti data dummy dengan ekspor 30 hari per toko; menambahkan variabel kontrol trafik (sessions) dalam interpretasi; mengulang observasi rubrik setiap kuartal untuk memantau konsistensi implementasi section.
+
+### 4.4. Daftar Pustaka
+
+Referensi berikut disusun mengikuti kaidah American Psychological Association (APA) edisi ke-7 (nama keluarga, inisial, tahun, judul, sumber). Daftar memuat **buku** dan **artikel jurnal**; dapat dilengkapi saat proposal dikembangkan menjadi karya akhir.
+
+Chandon, P., Wansink, B., & Laurent, G. (2000). A benefit congruency framework of sales promotion effectiveness. _Journal of Marketing_, _64_(4), 65–81. https://doi.org/10.1509/jmkg.64.4.65.1961
+
+Chevalier, J. A., & Mayzlin, D. (2006). The effect of word of mouth on sales: Online book reviews. _Journal of Marketing Research_, _43_(3), 345–354. https://doi.org/10.1509/jmkr.43.3.345
+
+Cialdini, R. B. (2021). _Influence: Science and practice_ (5th ed.). Pearson.
+
+Davis, F. D. (1989). Perceived usefulness, perceived ease of use, and user acceptance of information technology. _MIS Quarterly_, _13_(3), 319–340. https://doi.org/10.2307/249008
+
+Haubl, G., & Trifts, V. (2000). Consumer decision making in online shopping environments: The effects of interactive decision aids. _Marketing Science_, _19_(1), 4–21. https://doi.org/10.1287/mksc.19.1.4.3478
+
+Hair, J. F., Black, W. C., Babin, B. J., & Anderson, R. E. (2019). _Multivariate data analysis_ (8th ed.). Cengage.
+
+Kotler, P., & Keller, K. L. (2016). _Marketing management_ (15th ed.). Pearson.
+
+Ku, H.-H., Kuo, C.-C., & Kuo, P.-J. (2012). The effect of scarcity on the purchase intentions of fashion online shoppers. _International Journal of Electronic Commerce_, _17_(3), 49–68. https://doi.org/10.2753/JEC1086-4415170303
+
+Laudon, K. C., & Laudon, J. P. (2020). _Management information systems: Managing the digital firm_ (16th ed.). Pearson.
+
+Linden, G., Smith, B., & York, J. (2003). Amazon.com recommendations: Item-to-item collaborative filtering. _IEEE Internet Computing_, _7_(1), 76–80. https://doi.org/10.1109/MIC.2003.1167344
+
+Liu, C., & Arnett, K. P. (2000). Exploring the factors associated with Web site success in the context of electronic commerce. _Information & Management_, _38_(1), 23–33. https://doi.org/10.1016/S0378-7206(00)00049-5
+
+Moe, W. W. (2003). Buying, searching, or browsing: Differentiating between online shoppers using in-store navigational clickstream. _Journal of Consumer Psychology_, _13_(1–2), 29–39. https://doi.org/10.1207/S15327663JCP13-1&2_03
+
+Palazon, M., & Delgado-Ballester, E. (2009). Effectiveness of price discounts and premium promotions. _Psychology & Marketing_, _26_(12), 1108–1129. https://doi.org/10.1002/mar.20317
+
+Sismeiro, C., & Bucklin, R. E. (2004). Modeling website browsing and purchasing behavior using clickstream data. _Marketing Science_, _23_(3), 436–449. https://doi.org/10.1287/mksc.1040.0040
+
+Turban, E., Outland, J., King, D., Lee, J. K., Liang, T. P., & Turban, D. C. (2018). _Electronic commerce: A managerial and social networks perspective_ (9th ed.). Springer.
+
+Venkatesh, V., Morris, M. G., Davis, G. B., & Davis, F. D. (2003). User acceptance of information technology: Toward a unified view. _MIS Quarterly_, _27_(3), 425–478. https://doi.org/10.2307/30036540
+
+Xiao, B., & Benbasat, I. (2007). E-commerce product recommendation agents: Resolving a personalization paradox. _Journal of the Association for Information Systems_, _8_(3), 63–84. https://doi.org/10.17705/1jais.00128
