@@ -36,7 +36,7 @@ Ringkasan ada di [`skills.md`](.cursor/skills/skills.md). Saat ini mencakup anta
 
 ## Integritas akademik
 
-Skill dirancang untuk **pemahaman, kerangka, dan contoh** — bukan menggantikan tugas, diskusi, rekaman praktik, atau karya yang harus orisinal. Patuhi aturan plagiarisme, pengumpulan via Tuton, dan panduan tutor kampus Anda.
+Skill dirancang untuk **pemahaman, kerangka, dan contoh** bukan menggantikan tugas, diskusi, rekaman praktik, atau karya yang harus orisinal. Patuhi aturan plagiarisme, pengumpulan via Tuton, dan panduan tutor kampus Anda.
 
 ---
 

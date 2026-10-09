@@ -1,0 +1,59 @@
+erDiagram
+    PETUGAS_ADMINISTRASI ||--o{ PENDAFTARAN : melayani
+    PASIEN ||--o{ PENDAFTARAN : melakukan
+    DOKTER ||--o{ PEMERIKSAAN : melakukan
+    PASIEN ||--o{ PEMERIKSAAN : menjalani
+    PEMERIKSAAN ||--o| RESEP : menghasilkan
+    RESEP ||--|{ DETAIL_RESEP : berisi
+    OBAT ||--o{ DETAIL_RESEP : tercantum
+
+    PETUGAS_ADMINISTRASI {
+        varchar id_petugas PK
+        varchar nama_petugas
+        varchar no_telp
+    }
+    PASIEN {
+        varchar id_pasien PK
+        varchar nama_pasien
+        date tgl_lahir
+        char jenis_kelamin
+        text alamat
+        varchar no_telp
+    }
+    PENDAFTARAN {
+        varchar id_pendaftaran PK
+        varchar id_pasien FK
+        varchar id_petugas FK
+        date tgl_daftar
+        text keluhan
+    }
+    DOKTER {
+        varchar id_dokter PK
+        varchar nama_dokter
+        varchar spesialisasi
+        varchar no_telp
+    }
+    PEMERIKSAAN {
+        varchar id_pemeriksaan PK
+        varchar id_dokter FK
+        varchar id_pasien FK
+        date tgl_periksa
+        text diagnosa
+    }
+    RESEP {
+        varchar id_resep PK
+        varchar id_pemeriksaan FK
+        date tgl_resep
+    }
+    OBAT {
+        varchar id_obat PK
+        varchar nama_obat
+        varchar jenis_obat
+        decimal harga
+    }
+    DETAIL_RESEP {
+        varchar id_resep PK, FK
+        varchar id_obat PK, FK
+        int jumlah
+        varchar dosis
+    }

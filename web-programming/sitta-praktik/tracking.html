@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Tracking pengiriman bahan ajar SITTA berdasarkan nomor Delivery Order" />
+    <title>Tracking Pengiriman | SITTA Universitas Terbuka</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
+    <link rel="stylesheet" href="css/style.css" />
+    <style>
+      .search-form {
+        display: flex;
+        gap: 0.6rem;
+        flex-wrap: wrap;
+      }
+
+      .search-form .input-icon {
+        flex: 1;
+        min-width: 220px;
+      }
+
+      .sample-do {
+        margin-top: 0.8rem;
+        font-size: 0.85rem;
+        color: var(--muted);
+      }
+
+      .sample-do button {
+        margin-left: 0.3rem;
+      }
+
+      .do-header {
+        background: linear-gradient(120deg, var(--navy), var(--navy-light));
+        color: #fff;
+        border-radius: var(--radius);
+        padding: 1.4rem;
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 1rem;
+      }
+
+      .do-header h2 {
+        font-size: 1.2rem;
+        text-transform: uppercase;
+      }
+
+      .do-header .do-number {
+        font-size: 1.1rem;
+        letter-spacing: 1px;
+        opacity: 0.9;
+      }
+
+      .progress {
+        margin: 1.5rem 0 0.5rem;
+        height: 10px;
+        background: var(--border);
+        border-radius: 999px;
+        overflow: hidden;
+      }
+
+      .progress-bar {
+        height: 100%;
+        width: 0;
+        background: var(--yellow);
+        transition: width 0.8s ease;
+      }
+
+      .progress-bar.done {
+        background: var(--success);
+      }
+
+      .steps {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        text-align: center;
+        font-size: 0.8rem;
+        color: var(--muted);
+      }
+
+      .steps li {
+        list-style: none;
+      }
+
+      .steps li.reached {
+        color: var(--navy);
+        font-weight: 600;
+      }
+
+      .steps i {
+        display: block;
+        font-size: 1.3rem;
+      }
+
+      .detail-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+        gap: 1rem;
+        margin: 1.5rem 0;
+      }
+
+      .detail-grid dt {
+        font-size: 0.8rem;
+        color: var(--muted);
+      }
+
+      .detail-grid dd {
+        font-weight: 600;
+      }
+
+      .timeline {
+        list-style: none;
+        border-left: 3px solid var(--border);
+        margin-left: 0.5rem;
+      }
+
+      .timeline li {
+        position: relative;
+        padding: 0 0 1.2rem 1.4rem;
+        display: flex;
+        justify-content: space-between;
+        gap: 1rem;
+        flex-wrap: wrap;
+      }
+
+      .timeline li::before {
+        content: "";
+        position: absolute;
+        left: -9px;
+        top: 4px;
+        width: 15px;
+        height: 15px;
+        border-radius: 50%;
+        background: var(--yellow);
+        border: 3px solid #fff;
+        box-shadow: 0 0 0 1px var(--yellow);
+      }
+
+      .timeline li:first-child::before {
+        background: var(--navy);
+        box-shadow: 0 0 0 1px var(--navy);
+      }
+
+      .timeline time {
+        color: var(--muted);
+        font-size: 0.85rem;
+        white-space: nowrap;
+      }
+    </style>
+  </head>
+  <body data-page="tracking">
+    <header class="navbar">
+      <nav class="container" aria-label="Navigasi utama">
+        <a href="dashboard.html" class="brand">
+          <span class="brand-logo"><i class="bi bi-book-half" aria-hidden="true"></i></span>
+          SITTA
+        </a>
+        <button type="button" class="nav-toggle" id="navToggle" aria-label="Buka menu" aria-expanded="false">
+          <i class="bi bi-list"></i>
+        </button>
+        <ul class="nav-menu" id="navMenu">
+          <li><a href="stok.html" class="nav-link"><i class="bi bi-journal-bookmark"></i> Informasi Bahan Ajar</a></li>
+          <li><a href="tracking.html" class="nav-link active" aria-current="page"><i class="bi bi-truck"></i> Tracking Pengiriman</a></li>
+          <li class="dropdown">
+            <button type="button" class="nav-link" aria-haspopup="true" aria-expanded="false">
+              <i class="bi bi-bar-chart-line"></i> Laporan <i class="bi bi-chevron-down"></i>
+            </button>
+            <ul class="dropdown-menu">
+              <li><a href="#" data-coming-soon="Monitoring Progress DO Bahan Ajar"><i class="bi bi-clipboard-data"></i> Monitoring Progress DO Bahan Ajar</a></li>
+              <li><a href="#" data-coming-soon="Rekap Bahan Ajar"><i class="bi bi-file-earmark-bar-graph"></i> Rekap Bahan Ajar</a></li>
+            </ul>
+          </li>
+          <li><a href="#" class="nav-link" data-coming-soon="Histori Transaksi Bahan Ajar"><i class="bi bi-clock-history"></i> Histori Transaksi Bahan Ajar</a></li>
+          <li><a href="index.html" class="nav-link" data-logout><i class="bi bi-box-arrow-right"></i> Keluar</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main class="container">
+      <section class="page-header">
+        <h1>Tracking Pengiriman</h1>
+        <p>Lacak status pengiriman bahan ajar berdasarkan nomor Delivery Order (DO).</p>
+      </section>
+
+      <section class="card" aria-label="Form pencarian DO">
+        <form id="trackingForm" class="search-form" novalidate>
+          <div class="input-icon">
+            <i class="bi bi-upc-scan" aria-hidden="true"></i>
+            <input type="text" id="nomorDO" inputmode="numeric" placeholder="Masukkan Nomor Delivery Order" aria-label="Nomor Delivery Order" />
+          </div>
+          <button type="submit" class="btn btn-primary"><i class="bi bi-search"></i> Cari</button>
+        </form>
+        <small class="error-text" id="nomorDOError"></small>
+        <p class="sample-do">
+          Contoh DO:
+          <button type="button" class="btn-link" data-sample-do="2023001234">2023001234</button>
+          <button type="button" class="btn-link" data-sample-do="2023005678">2023005678</button>
+        </p>
+      </section>
+
+      <section id="trackingResult" class="card" hidden aria-live="polite"></section>
+    </main>
+
+    <footer class="footer">&copy; 2026 SITTA &middot; Universitas Terbuka</footer>
+
+    <div class="toast-container" id="toastContainer" aria-live="polite"></div>
+
+    <script src="js/data.js"></script>
+    <script src="js/script.js"></script>
+  </body>
+</html>

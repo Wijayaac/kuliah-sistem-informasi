@@ -1,0 +1,15 @@
+{
+  "name": "tugas1-stsi4303",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "tsc",
+    "soal1": "tsc && node dist/soal1.js",
+    "soal2": "tsc && node dist/soal2.js",
+    "soal3": "tsc && node dist/soal3.js"
+  },
+  "devDependencies": {
+    "typescript": "^5.6.0"
+  }
+}

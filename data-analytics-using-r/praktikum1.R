@@ -1,4 +1,4 @@
-# Praktikum 1 — Operasi sederhana di R
+# Praktikum 1 Operasi sederhana di R
 
 # --- 1. Operasi sederhana ---
 1 + 2

@@ -1,0 +1,14 @@
+{
+  "r.rpath.mac": "/usr/local/bin/R",
+  "r.rterm.mac": "/usr/local/bin/R",
+  "r.bracketedPaste": false,
+  "r.plot.useHttpgd": true,
+  "files.associations": {
+    "*.R": "r",
+    "*.r": "r"
+  },
+  "[r]": {
+    "editor.tabSize": 2,
+    "editor.insertSpaces": true
+  }
+}

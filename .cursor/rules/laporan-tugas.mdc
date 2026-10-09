@@ -1,0 +1,73 @@
+---
+description: Format laporan tugas kuliah (penjelasan + naskah video + versi Word)
+alwaysApply: true
+---
+
+# Laporan Tugas Kuliah
+
+Setiap tugas yang sudah dijawab, buat 2 file di folder mata kuliahnya. Bahasa Indonesia, gaya santai-formal.
+Referensi: `pemrograman-mobile-stsi4303/laporan-tugas1.md`, `data-analytics-using-r/laporan-tugas1.md`.
+
+Identitas: Nama `I KD WIJAYA SASHMITHA ADHI C`, NIM `048068753`, UPBJJ Denpasar.
+Di naskah video sebut nama lengkap "I Kadek Wijaya Sashmitha Adhi".
+
+## Gaya penulisan (wajib)
+
+- Jangan pakai em dash `—`. Ganti dengan spasi biasa (mis. `Soal 1 Pola Segitiga`), atau `-` untuk sel tabel kosong.
+- Jangan pakai panah `→ ← ↑ ↓`. Pakai `>` dan `<` (mis. `"53" > 53`, `Analisis > Kode > Output`).
+
+## 1. `laporan-tugasN.md` penjelasan untuk rekaman video
+
+1. Header: nama, NIM, bahasa, tools.
+2. Persiapan: struktur folder, cara menjalankan, alur kerja tool, tabel konsep dasar yang dipakai.
+3. Per soal: Analisis soal > Kode > Tabel penjelasan per baris (nomor baris sesuai file) > Tracing / perhitungan manual > Output > Analisa.
+4. Bukti program benar (uji contoh soal / hitung manual).
+5. Naskah video ± 10 menit, per bagian dengan estimasi durasi + kutipan "> ..." yang bisa dibaca langsung.
+6. Tabel kemungkinan pertanyaan tutor.
+
+Semua angka di laporan wajib diverifikasi (jalankan kode atau hitung ulang), jangan dikarang.
+
+## 2. `laporan-tugasN-word.md` versi final untuk Microsoft Word
+
+Contoh final yang sudah disetujui: `data-analytics-using-r/Laporan Tugas Tutorial 1 Analisis dan Visualisasi Data (STSI4204).docx`.
+
+Urutan tetap:
+
+```text
+# Laporan Tugas N <Nama Mata Kuliah> (<KODE>)
+Nama: I KD WIJAYA SASHMITHA ADHI C
+NIM: 048068753
+Selamat malam. Perkenalkan nama saya I Kadek Wijaya Sashmitha Adhi, dari UPBJJ Denpasar. Pada video ini saya akan menjelaskan Tugas N mata kuliah <Nama>, <KODE>, yaitu <ringkasan tugas>.
+Saya memakai <tools>. <1-2 kalimat: file mana berisi jawaban + cara menjalankan>. (singkat, tanpa teori)
+Berikut URL video : (isi link Google Drive)
+Atau youtube : (isi link YouTube)
+## Hasil kode program
+### Soal 1 <judul>   (per soal: kode, "Output:" + hasil, tabel/gambar, jawaban/interpretasi bullet)
+...
+Sumber: <BMP/modul>
+Code R / Code TypeScript / dst
+!include(./<file kode lengkap>)
+```
+
+- Lampiran akhir wajib: kode program lengkap pakai `!include(...)`, supaya selalu sama dengan file aslinya.
+- Format Word: Helvetica Neue 10pt untuk teks, Courier New 10pt untuk kode, A4, margin 2,54 cm.
+- Nama file: `Laporan Tugas N <Nama Mata Kuliah> (<KODE>).docx`. Jangan menimpa file `.docx` yang sudah diedit user; generate ke nama lain lalu beri tahu.
+
+Generate `.docx` (pandoc tidak terpasang; pakai script stdlib):
+
+```bash
+python3 scripts/md_to_docx.py <folder>/laporan-tugasN-word.md "<folder>/Laporan Tugas N <Matkul> (<KODE>).docx"
+```
+
+Converter hanya mendukung: heading `#`, paragraf, bullet `- `, code block, tabel pipe, gambar, `!include(path)`, `**bold**`, `*italic*`, `` `code` ``, `[[catatan merah yang harus diisi user]]`. Jangan pakai LaTeX `\( \)` di file Word.
+Gambar yang belum ada jadi placeholder; jalankan ulang setelah screenshot/plot dibuat (simpan PNG di folder mata kuliah, bukan root repo).
+
+## 3. Mata kuliah berpraktik: `laporan-tugasN-berpraktik.md`
+
+Wajib pakai format resmi UT (`scripts/template-laporan-berpraktik.docx`, Times New Roman). Contoh: `data-analytics-using-r/laporan-tugas1-berpraktik.md`.
+Front matter `tugas`, `matkul`, `kode` > cover otomatis (logo UT, identitas). Urutan section `##` (jadi A., B., ...):
+SOAL (tulis ulang soal) > Program (`!include`) > Penjelasan program > Bukti Video dengan Link Youtube > Tangkapan Layar (Screenshot) Swafoto Bersama Layar Program (`swafoto-layar-program.png`), lalu `# DAFTAR PUSTAKA` (APA 7). Data yang belum ada (link, penulis BMP, tahun) tulis `[[...]]`, jangan dikarang.
+
+```bash
+python3 scripts/md_to_berpraktik_docx.py <folder>/laporan-tugasN-berpraktik.md "<folder>/Laporan Tugas N <Matkul> (<KODE>) - Format Berpraktik.docx"
+```

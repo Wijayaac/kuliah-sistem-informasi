@@ -124,7 +124,7 @@ Variabel bebas keempat, unique selling point atau USP (X4), dioperasionalkan seb
 
 Variabel bebas kelima, produk berelasi (X5), dioperasionalkan sebagai penyajian rekomendasi cross-sell atau produk terkait pada halaman produk atau keranjang, diukur dengan skor indeks (jumlah rekomendasi, relevansi label, posisi tampilan).
 
-Pengukuran variabel bebas dilakukan melalui observasi terstruktur terhadap antarmuka toko (audit on-page) oleh peneliti, dengan pedoman rubrik yang disepakati sebelumnya agar konsisten antar unit. Conversion rate diambil dari **Shopify Analytics** (menu **Analytics → Reports** atau ringkasan **Online store conversion rate**), berupa rasio **pesanan dibayar (orders)** terhadap **sesi (sessions)** pada periode yang sama dengan observasi (misalnya 30 hari). Metrik pendukung yang dicatat meliputi jumlah sesi, jumlah pesanan, dan conversion rate dalam persen; data dapat diekspor ke spreadsheet atau didokumentasikan dengan tangkapan layar dashboard untuk lampiran laporan.
+Pengukuran variabel bebas dilakukan melalui observasi terstruktur terhadap antarmuka toko (audit on-page) oleh peneliti, dengan pedoman rubrik yang disepakati sebelumnya agar konsisten antar unit. Conversion rate diambil dari **Shopify Analytics** (menu **Analytics > Reports** atau ringkasan **Online store conversion rate**), berupa rasio **pesanan dibayar (orders)** terhadap **sesi (sessions)** pada periode yang sama dengan observasi (misalnya 30 hari). Metrik pendukung yang dicatat meliputi jumlah sesi, jumlah pesanan, dan conversion rate dalam persen; data dapat diekspor ke spreadsheet atau didokumentasikan dengan tangkapan layar dashboard untuk lampiran laporan.
 
 Untuk keperluan penyusunan proposal dan demonstrasi analisis pada Bab IV, digunakan **data ilustratif (dummy)** yang disusun mengikuti pola metrik Shopify dan struktur variabel penelitian. Data dummy tersebut dapat diganti seluruhnya atau sebagian dengan ekspor aktual dari toko klien tanpa mengubah kerangka analisis. Pada tahap laporan akhir, peneliti mencantumkan pernyataan sumber data (aktual atau ilustratif) agar interpretasi temuan tetap transparan.
 
@@ -144,7 +144,7 @@ Instrumen penelitian. Instrumen pertama adalah lembar observasi section promosi 
 
 Instrumen kedua adalah formulir metadata toko, yang mencatat platform sistem penjualan, kategori produk utama, lama operasi daring, dan periode laporan analytics yang diserahkan, agar homogenitas sampel dan interpretasi conversion rate lebih terkontrol.
 
-Instrumen ketiga adalah formulir data conversion rate berbasis Shopify Analytics, berisi: nama toko (dianonimkan), periode pengamatan (tanggal mulai–akhir), jumlah **sessions**, jumlah **orders** (paid), conversion rate terhitung (\(orders \div sessions \times 100\%\)), serta catatan sumber (ekspor CSV, tangkapan layar **Analytics → Reports**, atau entri manual dari dashboard). Formulir keempat (opsional) adalah lembar **sebelum–sesudah** untuk toko yang mengubah konfigurasi section promosi, memuat conversion rate periode 30 hari sebelum dan 30 hari sesudah perubahan, plus daftar section yang diaktifkan.
+Instrumen ketiga adalah formulir data conversion rate berbasis Shopify Analytics, berisi: nama toko (dianonimkan), periode pengamatan (tanggal mulai–akhir), jumlah **sessions**, jumlah **orders** (paid), conversion rate terhitung (\(orders \div sessions \times 100\%\)), serta catatan sumber (ekspor CSV, tangkapan layar **Analytics > Reports**, atau entri manual dari dashboard). Formulir keempat (opsional) adalah lembar **sebelum–sesudah** untuk toko yang mengubah konfigurasi section promosi, memuat conversion rate periode 30 hari sebelum dan 30 hari sesudah perubahan, plus daftar section yang diaktifkan.
 
 **Contoh struktur tabel pengumpulan (Excel/Google Sheets)** yang disarankan untuk Bab IV:
 
@@ -161,23 +161,23 @@ Instrumen ketiga adalah formulir data conversion rate berbasis Shopify Analytics
 
 **Cara mengisi (dua lembar di Excel)**
 
-Gunakan **Lembar 1 — Lintas toko** untuk Tabel Bab IV (satu baris per toko, periode 30 hari). Gunakan **Lembar 2 — Sebelum–sesudah** hanya untuk toko yang mengaktifkan section promosi; baris yang sama bisa diisi CR sebelum/sesudah tanpa mengulang seluruh portofolio.
+Gunakan **Lembar 1 Lintas toko** untuk Tabel Bab IV (satu baris per toko, periode 30 hari). Gunakan **Lembar 2 Sebelum–sesudah** hanya untuk toko yang mengaktifkan section promosi; baris yang sama bisa diisi CR sebelum/sesudah tanpa mengulang seluruh portofolio.
 
 **Langkah per kolom**
 
-1. **ID toko** — kode anonim, misalnya `T-F01` (fashion 01). Jangan cantumkan nama merek asli di laporan.
-2. **X1–X5** — hasil audit halaman produk/keranjang (bukan dari Shopify). Skor 0–3 per section; contoh fashion setelah section dipasang: upsell paket look (3), countdown flash sale (1), BOGO “beli 2 gratis ongkir” (1), USP bahan & size guide (3), rekomendasi “complete the look” (3).
-3. **Sessions** — dari Shopify Analytics, periode tetap (mis. 30 hari). Contoh realistis toko fashion menengah: **15.000** sesi/bulan.
-4. **Orders** — pesanan paid di periode yang sama. Hitung dari CR jika hanya punya persentase: `Orders = Sessions × CR% ÷ 100`.
-5. **CR (%)** — `=Orders/Sessions*100` atau angka langsung dari dashboard. Untuk fashion, **1–2%** umum sebelum optimasi on-page; **2,5–4%** setelah section promosi kuat (data ilustratif di bawah memakai **1% → 3%**).
-6. **CR sebelum / sesudah** — isi hanya di Lembar 2; periode masing-masing 30 hari, trafik tidak boleh dibandingkan jika ada kampanye iklan besar di salah satu periode (catat di metadata).
-7. **Δ CR (p.p.)** — `=CR sesudah − CR sebelum` (bukan persen dari persen). Contoh: 3% − 1% = **+2,0 p.p.**
+1. **ID toko** kode anonim, misalnya `T-F01` (fashion 01). Jangan cantumkan nama merek asli di laporan.
+2. **X1–X5** hasil audit halaman produk/keranjang (bukan dari Shopify). Skor 0–3 per section; contoh fashion setelah section dipasang: upsell paket look (3), countdown flash sale (1), BOGO “beli 2 gratis ongkir” (1), USP bahan & size guide (3), rekomendasi “complete the look” (3).
+3. **Sessions** dari Shopify Analytics, periode tetap (mis. 30 hari). Contoh realistis toko fashion menengah: **15.000** sesi/bulan.
+4. **Orders** pesanan paid di periode yang sama. Hitung dari CR jika hanya punya persentase: `Orders = Sessions × CR% ÷ 100`.
+5. **CR (%)** `=Orders/Sessions*100` atau angka langsung dari dashboard. Untuk fashion, **1–2%** umum sebelum optimasi on-page; **2,5–4%** setelah section promosi kuat (data ilustratif di bawah memakai **1% > 3%**).
+6. **CR sebelum / sesudah** isi hanya di Lembar 2; periode masing-masing 30 hari, trafik tidak boleh dibandingkan jika ada kampanye iklan besar di salah satu periode (catat di metadata).
+7. **Δ CR (p.p.)** `=CR sesudah − CR sebelum` (bukan persen dari persen). Contoh: 3% − 1% = **+2,0 p.p.**
 
-**Contoh simulasi — toko fashion (ilustratif)**
+**Contoh simulasi toko fashion (ilustratif)**
 
 Asumsi: kategori **fashion/apparel**, platform Shopify, periode 30 hari, trafik relatif stabil (~15.000 sessions per periode).
 
-**T-F01 — Periode sebelum** (30 hari, section promosi minimal)
+**T-F01 Periode sebelum** (30 hari, section promosi minimal)
 
 | Field                   | Nilai                                                      |
 | ----------------------- | ---------------------------------------------------------- |
@@ -193,7 +193,7 @@ Asumsi: kategori **fashion/apparel**, platform Shopify, periode 30 hari, trafik 
 | CR (%)                  | 1,00                                                       |
 | Keterangan              | Hanya deskripsi produk dasar, tanpa upsell/urgensi promosi |
 
-**T-F01 — Periode sesudah** (30 hari, section promosi diperkuat)
+**T-F01 Periode sesudah** (30 hari, section promosi diperkuat)
 
 | Field                   | Nilai                                                                         |
 | ----------------------- | ----------------------------------------------------------------------------- |
@@ -209,7 +209,7 @@ Asumsi: kategori **fashion/apparel**, platform Shopify, periode 30 hari, trafik 
 | CR (%)                  | 3,00                                                                          |
 | Keterangan              | Upsell look, USP bahan & size guide, rekomendasi silang, countdown flash sale |
 
-**T-F01 — Ringkasan perbandingan**
+**T-F01 Ringkasan perbandingan**
 
 | Field          | Nilai |
 | -------------- | ----- |
@@ -228,16 +228,16 @@ Di Excel, salin pola **kolom A = Field, kolom B = Nilai** (format vertikal) per 
 | --------------- | ------------------------------------ |
 | Sessions        | 15000                                |
 | CR (%)          | 3                                    |
-| Orders          | `=B3*B4/100` (sesuaikan baris) → 450 |
+| Orders          | `=B3*B4/100` (sesuaikan baris) > 450 |
 | CR sebelum (%)  | 1                                    |
 | CR sesudah (%)  | 3                                    |
-| Δ CR (p.p.)     | `=B7-B6` (sesuaikan baris) → 2       |
+| Δ CR (p.p.)     | `=B7-B6` (sesuaikan baris) > 2       |
 
 **Dari Shopify Analytics (data asli nanti)**
 
-1. Buka **Analytics → Reports** (atau **Overview** → conversion).
-2. Pilih rentang tanggal **30 hari sebelum** aktivasi section → catat **Sessions** dan **Orders** (atau conversion rate) → isi **CR sebelum**.
-3. Ulangi untuk **30 hari sesudah** → isi **Sessions**, **Orders**, **CR sesudah**.
+1. Buka **Analytics > Reports** (atau **Overview** > conversion).
+2. Pilih rentang tanggal **30 hari sebelum** aktivasi section > catat **Sessions** dan **Orders** (atau conversion rate) > isi **CR sebelum**.
+3. Ulangi untuk **30 hari sesudah** > isi **Sessions**, **Orders**, **CR sesudah**.
 4. Lampirkan screenshot kedua periode di lampiran proposal.
 
 **Skor X1–X5 (panduan singkat fashion)**
@@ -314,7 +314,7 @@ Secara deskriptif, toko dengan **skor section promosi lebih tinggi** cenderung m
 
 \*Pada sampel kecil (n = 12), nilai |r| > 0,58 umumnya berada di atas ambang kritis dua arah (df = 10). Temuan ilustratif ini **selaras dengan hipotesis alternatif** pada subbab 2.2: semakin kuat penerapan section promosi on-page, semakin tinggi conversion rate yang tercatat di Shopify Analytics.
 
-**Contoh regresi linear sederhana (ilustratif)** — indeks section terhadap conversion rate:
+**Contoh regresi linear sederhana (ilustratif)** indeks section terhadap conversion rate:
 
 Ŷ (CR %) = 0,22 · Indeks section + 0,95
 
