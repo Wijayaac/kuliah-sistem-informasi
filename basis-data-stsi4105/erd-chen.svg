@@ -1,0 +1,164 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1700" height="1060" font-family="Arial, Helvetica, sans-serif" font-size="15">
+<rect width="1700" height="1060" fill="#fff"/>
+<text x="50" y="40" font-size="20" font-weight="bold">ERD Konseptual Sistem Rumah Sakit (Notasi Chen)</text>
+<g stroke="#000" stroke-width="1.5">
+<line x1="100" y1="120" x2="250" y2="220"/>
+<line x1="260" y1="90" x2="250" y2="220"/>
+<line x1="100" y1="320" x2="250" y2="220"/>
+<line x1="470" y1="100" x2="550" y2="220"/>
+<line x1="605" y1="100" x2="550" y2="220"/>
+<line x1="740" y1="110" x2="850" y2="220"/>
+<line x1="850" y1="65" x2="850" y2="220"/>
+<line x1="985" y1="100" x2="850" y2="220"/>
+<line x1="1095" y1="160" x2="850" y2="220"/>
+<line x1="1105" y1="230" x2="850" y2="220"/>
+<line x1="710" y1="330" x2="850" y2="220"/>
+<line x1="660" y1="420" x2="850" y2="460"/>
+<line x1="660" y1="500" x2="850" y2="460"/>
+<line x1="700" y1="810" x2="850" y2="700"/>
+<line x1="850" y1="840" x2="850" y2="700"/>
+<line x1="1000" y1="810" x2="850" y2="700"/>
+<line x1="680" y1="690" x2="850" y2="700"/>
+<line x1="1570" y1="400" x2="1400" y2="460"/>
+<line x1="1570" y1="500" x2="1400" y2="460"/>
+<line x1="1240" y1="700" x2="1400" y2="680"/>
+<line x1="1560" y1="700" x2="1400" y2="680"/>
+<line x1="1240" y1="960" x2="1400" y2="900"/>
+<line x1="1400" y1="1000" x2="1400" y2="900"/>
+<line x1="1560" y1="960" x2="1400" y2="900"/>
+<line x1="1570" y1="860" x2="1400" y2="900"/>
+<line x1="250" y1="220" x2="550" y2="220"/>
+<line x1="850" y1="220" x2="550" y2="220"/>
+<line x1="850" y1="700" x2="850" y2="460"/>
+<line x1="850" y1="220" x2="850" y2="460"/>
+<line x1="850" y1="220" x2="1125" y2="340"/>
+<line x1="1400" y1="460" x2="1125" y2="340"/>
+<line x1="850" y1="700" x2="1125" y2="580"/>
+<line x1="1400" y1="460" x2="1125" y2="580"/>
+<line x1="1400" y1="460" x2="1400" y2="680"/>
+<line x1="1400" y1="900" x2="1400" y2="680"/>
+</g><g stroke="#000" stroke-width="1.5" fill="#fff">
+<ellipse cx="100" cy="120" rx="62.0" ry="22.0"/>
+<ellipse cx="260" cy="90" rx="62.0" ry="22.0"/>
+<ellipse cx="100" cy="320" rx="62.0" ry="22.0"/>
+<ellipse cx="470" cy="100" rx="62.0" ry="22.0"/>
+<ellipse cx="605" cy="100" rx="62.0" ry="22.0"/>
+<ellipse cx="740" cy="110" rx="62.0" ry="22.0"/>
+<ellipse cx="850" cy="65" rx="62.0" ry="22.0"/>
+<ellipse cx="985" cy="100" rx="62.0" ry="22.0"/>
+<ellipse cx="1095" cy="160" rx="62.0" ry="22.0"/>
+<ellipse cx="1105" cy="230" rx="62.0" ry="22.0"/>
+<ellipse cx="710" cy="330" rx="62.0" ry="22.0"/>
+<ellipse cx="660" cy="420" rx="62.0" ry="22.0"/>
+<ellipse cx="660" cy="500" rx="62.0" ry="22.0"/>
+<ellipse cx="700" cy="810" rx="62.0" ry="22.0"/>
+<ellipse cx="850" cy="840" rx="62.0" ry="22.0"/>
+<ellipse cx="1000" cy="810" rx="62.0" ry="22.0"/>
+<ellipse cx="680" cy="690" rx="62.0" ry="22.0"/>
+<ellipse cx="1570" cy="400" rx="62.0" ry="22.0"/>
+<ellipse cx="1570" cy="500" rx="62.0" ry="22.0"/>
+<ellipse cx="1240" cy="700" rx="62.0" ry="22.0"/>
+<ellipse cx="1560" cy="700" rx="62.0" ry="22.0"/>
+<ellipse cx="1240" cy="960" rx="62.0" ry="22.0"/>
+<ellipse cx="1400" cy="1000" rx="62.0" ry="22.0"/>
+<ellipse cx="1560" cy="960" rx="62.0" ry="22.0"/>
+<ellipse cx="1570" cy="860" rx="62.0" ry="22.0"/>
+<polygon points="550,180.0 615.0,220 550,260.0 485.0,220"/>
+<polygon points="850,420.0 915.0,460 850,500.0 785.0,460"/>
+<polygon points="1125,300.0 1190.0,340 1125,380.0 1060.0,340"/>
+<polygon points="1125,540.0 1190.0,580 1125,620.0 1060.0,580"/>
+<polygon points="1400,640.0 1465.0,680 1400,720.0 1335.0,680"/>
+<rect x="165.0" y="195.0" width="170" height="50"/>
+<rect x="765.0" y="195.0" width="170" height="50"/>
+<rect x="765.0" y="675.0" width="170" height="50"/>
+<rect x="1315.0" y="435.0" width="170" height="50"/>
+<rect x="1315.0" y="875.0" width="170" height="50"/>
+</g><g text-anchor="middle" dominant-baseline="central">
+<text x="100" y="120" text-decoration="underline" font-weight="bold">id_petugas</text>
+<text x="260" y="90">nama_petugas</text>
+<text x="100" y="320">no_telp</text>
+<text x="470" y="100">tgl_daftar</text>
+<text x="605" y="100">keluhan</text>
+<text x="740" y="110" text-decoration="underline" font-weight="bold">id_pasien</text>
+<text x="850" y="65">nama_pasien</text>
+<text x="985" y="100">tgl_lahir</text>
+<text x="1095" y="160">jenis_kelamin</text>
+<text x="1105" y="230">alamat</text>
+<text x="710" y="330">no_telp</text>
+<text x="660" y="420">tgl_periksa</text>
+<text x="660" y="500">diagnosa</text>
+<text x="700" y="810" text-decoration="underline" font-weight="bold">id_dokter</text>
+<text x="850" y="840">nama_dokter</text>
+<text x="1000" y="810">spesialisasi</text>
+<text x="680" y="690">no_telp</text>
+<text x="1570" y="400" text-decoration="underline" font-weight="bold">id_resep</text>
+<text x="1570" y="500">tgl_resep</text>
+<text x="1240" y="700">jumlah</text>
+<text x="1560" y="700">dosis</text>
+<text x="1240" y="960" text-decoration="underline" font-weight="bold">id_obat</text>
+<text x="1400" y="1000">nama_obat</text>
+<text x="1560" y="960">jenis_obat</text>
+<text x="1570" y="860">harga</text>
+<text x="550" y="220" font-weight="bold">Mendaftar</text>
+<text x="850" y="460" font-weight="bold">Memeriksa</text>
+<text x="1125" y="340" font-weight="bold">Menerima</text>
+<text x="1125" y="580" font-weight="bold">Membuat</text>
+<text x="1400" y="680" font-weight="bold">Berisi</text>
+<text x="250" y="220" font-weight="bold">Petugas_Administrasi</text>
+<text x="850" y="220" font-weight="bold">Pasien</text>
+<text x="850" y="700" font-weight="bold">Dokter</text>
+<text x="1400" y="460" font-weight="bold">Resep</text>
+<text x="1400" y="900" font-weight="bold">Obat</text>
+<rect x="388.0" y="207.0" width="24" height="26" fill="#fff"/>
+<text x="400.0" y="220.0" font-size="18" font-weight="bold">1</text>
+<rect x="688.0" y="207.0" width="24" height="26" fill="#fff"/>
+<text x="700.0" y="220.0" font-size="18" font-weight="bold">N</text>
+<rect x="838.0" y="567.0" width="24" height="26" fill="#fff"/>
+<text x="850.0" y="580.0" font-size="18" font-weight="bold">M</text>
+<rect x="838.0" y="327.0" width="24" height="26" fill="#fff"/>
+<text x="850.0" y="340.0" font-size="18" font-weight="bold">N</text>
+<rect x="975.5" y="267.0" width="24" height="26" fill="#fff"/>
+<text x="987.5" y="280.0" font-size="18" font-weight="bold">1</text>
+<rect x="1250.5" y="387.0" width="24" height="26" fill="#fff"/>
+<text x="1262.5" y="400.0" font-size="18" font-weight="bold">N</text>
+<rect x="975.5" y="627.0" width="24" height="26" fill="#fff"/>
+<text x="987.5" y="640.0" font-size="18" font-weight="bold">1</text>
+<rect x="1250.5" y="507.0" width="24" height="26" fill="#fff"/>
+<text x="1262.5" y="520.0" font-size="18" font-weight="bold">N</text>
+<rect x="1388.0" y="557.0" width="24" height="26" fill="#fff"/>
+<text x="1400.0" y="570.0" font-size="18" font-weight="bold">M</text>
+<rect x="1388.0" y="777.0" width="24" height="26" fill="#fff"/>
+<text x="1400.0" y="790.0" font-size="18" font-weight="bold">N</text>
+</g>
+<text x="50" y="858" font-weight="bold">Keterangan derajat relasi dan kardinalitas:</text>
+<rect x="50" y="870" width="765.0" height="26" fill="#e6e6e6" stroke="#000"/>
+<text x="56" y="888" font-size="13" font-weight="bold">Relasi</text>
+<text x="221.0" y="888" font-size="13" font-weight="bold">Entitas</text>
+<text x="566.0" y="888" font-size="13" font-weight="bold">Derajat</text>
+<text x="671.0" y="888" font-size="13" font-weight="bold">Kardinalitas</text>
+<rect x="50" y="896" width="765.0" height="26" fill="#fff" stroke="#000"/>
+<text x="56" y="914" font-size="13">Mendaftar</text>
+<text x="221.0" y="914" font-size="13">Petugas_Administrasi - Pasien</text>
+<text x="566.0" y="914" font-size="13">Biner</text>
+<text x="671.0" y="914" font-size="13">1 : N</text>
+<rect x="50" y="922" width="765.0" height="26" fill="#fff" stroke="#000"/>
+<text x="56" y="940" font-size="13">Memeriksa</text>
+<text x="221.0" y="940" font-size="13">Dokter - Pasien</text>
+<text x="566.0" y="940" font-size="13">Biner</text>
+<text x="671.0" y="940" font-size="13">M : N</text>
+<rect x="50" y="948" width="765.0" height="26" fill="#fff" stroke="#000"/>
+<text x="56" y="966" font-size="13">Membuat</text>
+<text x="221.0" y="966" font-size="13">Dokter - Resep</text>
+<text x="566.0" y="966" font-size="13">Biner</text>
+<text x="671.0" y="966" font-size="13">1 : N</text>
+<rect x="50" y="974" width="765.0" height="26" fill="#fff" stroke="#000"/>
+<text x="56" y="992" font-size="13">Menerima</text>
+<text x="221.0" y="992" font-size="13">Pasien - Resep</text>
+<text x="566.0" y="992" font-size="13">Biner</text>
+<text x="671.0" y="992" font-size="13">1 : N</text>
+<rect x="50" y="1000" width="765.0" height="26" fill="#fff" stroke="#000"/>
+<text x="56" y="1018" font-size="13">Berisi</text>
+<text x="221.0" y="1018" font-size="13">Resep - Obat</text>
+<text x="566.0" y="1018" font-size="13">Biner</text>
+<text x="671.0" y="1018" font-size="13">M : N</text>
+</svg>

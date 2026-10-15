@@ -16,12 +16,12 @@ Buatlah Entity Relationship Diagram (ERD) dari kasus di atas. [[Cek dan sesuaika
 
 ERD dibuat dalam dua tahap:
 
-- ERD konseptual digambar dengan yEd Graph Editor (entitas, relasi, kardinalitas, dan atribut relasi).
+- ERD konseptual digambar dengan notasi Chen di draw.io (file `erd-chen.drawio`): persegi panjang = entitas, belah ketupat = relasi, elips = atribut, atribut kunci (primary key) digarisbawahi, dan setiap garis relasi diberi kardinalitas (1, N, M). Di bawah diagram ada tabel keterangan derajat relasi dan kardinalitas.
 - ERD logis (struktur tabel dengan PK dan FK) ditulis dengan Mermaid `erDiagram`, lalu dirender menjadi gambar.
 
-### ERD konseptual (yEd)
+### ERD konseptual (notasi Chen, draw.io)
 
-![ERD konseptual rumah sakit](./erd-tugas-1.png)
+![ERD konseptual rumah sakit notasi Chen](./erd-chen.png)
 
 ### ERD logis (Mermaid)
 
@@ -58,15 +58,17 @@ Kode Mermaid:
 | Resep | **id_resep**, tgl_resep |
 | Obat | **id_obat**, nama_obat, jenis_obat, harga |
 
-### Langkah 4 Relasi dan kardinalitas (ERD konseptual)
+### Langkah 4 Derajat relasi dan kardinalitas (ERD konseptual)
 
-| Relasi | Entitas | Kardinalitas | Aturan bisnis |
-| ------ | ------- | ------------ | ------------- |
-| Mendaftar | Petugas_Administrasi - Pasien | 1 : N | Satu petugas melayani banyak pendaftaran pasien. Atribut relasi: tgl_daftar, keluhan |
-| Memeriksa | Dokter - Pasien | M : N | Satu dokter menangani banyak pasien; satu pasien bisa diperiksa beberapa dokter. Atribut relasi: tgl_periksa, diagnosa |
-| Membuat | Dokter - Resep | 1 : N | Satu dokter membuat banyak resep; satu resep dibuat satu dokter |
-| Menerima | Pasien - Resep | 1 : N | Satu pasien bisa menerima banyak resep; satu resep untuk satu pasien |
-| Berisi | Resep - Obat | M : N | Satu resep berisi banyak obat; satu obat bisa ada di banyak resep. Atribut relasi: jumlah, dosis |
+Derajat relasi adalah jumlah entitas yang terlibat dalam satu relasi (unary = 1, biner = 2, ternary = 3). Kardinalitas adalah jumlah maksimum anggota entitas yang bisa berelasi dengan anggota entitas lain (1:1, 1:N, atau M:N). Semua relasi pada kasus ini menghubungkan dua entitas, jadi derajatnya biner.
+
+| Relasi | Entitas | Derajat | Kardinalitas | Aturan bisnis |
+| ------ | ------- | ------- | ------------ | ------------- |
+| Mendaftar | Petugas_Administrasi - Pasien | Biner | 1 : N | Satu petugas melayani banyak pendaftaran pasien. Atribut relasi: tgl_daftar, keluhan |
+| Memeriksa | Dokter - Pasien | Biner | M : N | Satu dokter menangani banyak pasien; satu pasien bisa diperiksa beberapa dokter. Atribut relasi: tgl_periksa, diagnosa |
+| Membuat | Dokter - Resep | Biner | 1 : N | Satu dokter membuat banyak resep; satu resep dibuat satu dokter |
+| Menerima | Pasien - Resep | Biner | 1 : N | Satu pasien bisa menerima banyak resep; satu resep untuk satu pasien |
+| Berisi | Resep - Obat | Biner | M : N | Satu resep berisi banyak obat; satu obat bisa ada di banyak resep. Atribut relasi: jumlah, dosis |
 
 ### Langkah 5 Transformasi ke ERD logis
 
@@ -101,11 +103,11 @@ Link YouTube: [[(isi link YouTube, mode Public atau Unlisted)]]
 
 Link Google Drive: [[(isi link Google Drive, akses "Anyone with the link")]]
 
-[[Catatan (hapus setelah dicek): video wajib menampilkan wajah; di awal sebutkan Nama, NIM, Program studi (Sistem Informasi), dan Mata kuliah Basis Data (STSI4105); jelaskan tujuan praktikum, tunjukkan proses menggambar ERD di yEd secara langsung, jelaskan hasil ERD dan kardinalitasnya, lalu penutup singkat. Pastikan link bisa dibuka tanpa minta izin akses.]]
+[[Catatan (hapus setelah dicek): video wajib menampilkan wajah; di awal sebutkan Nama, NIM, Program studi (Sistem Informasi), dan Mata kuliah Basis Data (STSI4105); jelaskan tujuan praktikum, tunjukkan proses menggambar ERD di draw.io secara langsung, jelaskan hasil ERD dan kardinalitasnya, lalu penutup singkat. Pastikan link bisa dibuka tanpa minta izin akses.]]
 
 ## Tangkapan Layar (Screenshot) Swafoto Bersama Layar Program
 
-[[Simpan foto selfie bersama layar yEd yang menampilkan ERD sebagai basis-data-stsi4105/swafoto-layar-program.png lalu generate ulang, atau tempel langsung di Word.]]
+[[Simpan foto selfie bersama layar draw.io yang menampilkan ERD sebagai basis-data-stsi4105/swafoto-layar-program.png lalu generate ulang, atau tempel langsung di Word.]]
 
 ![Swafoto bersama layar program](./swafoto-layar-program.png)
 
@@ -113,6 +115,6 @@ Link Google Drive: [[(isi link Google Drive, akses "Anyone with the link")]]
 
 [[(Nama penulis BMP)]]. ([[tahun]]). *STSI4206 Basis data* ([[Edisi ke-...]]). Universitas Terbuka.
 
-Mermaid. (n.d.). *Entity relationship diagrams*. https://mermaid.js.org/syntax/entityRelationshipDiagram.html
+JGraph Ltd. (n.d.). *draw.io* [Computer software]. https://www.drawio.com
 
-yWorks GmbH. (n.d.). *yEd graph editor* [Computer software]. https://www.yworks.com/products/yed
+Mermaid. (n.d.). *Entity relationship diagrams*. https://mermaid.js.org/syntax/entityRelationshipDiagram.html
