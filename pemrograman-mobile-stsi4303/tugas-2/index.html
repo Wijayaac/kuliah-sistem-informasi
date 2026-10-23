@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cuaca Jakarta - Tugas 2 STSI4303</title>
+  <!-- Vue 3 via CDN (embed) -->
+  <script src="https://unpkg.com/vue@3/dist/vue.global.prod.js"></script>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: system-ui, -apple-system, sans-serif; background: #eef3f8; color: #1f2937; }
+    .app { max-width: 480px; margin: 0 auto; min-height: 100vh; background: #fff; }
+    header { background: linear-gradient(135deg, #2563eb, #0ea5e9); color: #fff; padding: 20px 16px; }
+    header h1 { font-size: 20px; }
+    header p { font-size: 13px; opacity: .9; margin-top: 4px; }
+    .summary { display: flex; gap: 8px; margin-top: 14px; }
+    .card { flex: 1; background: rgba(255,255,255,.18); border-radius: 10px; padding: 8px; text-align: center; }
+    .card small { font-size: 11px; display: block; opacity: .9; }
+    .card b { font-size: 18px; }
+    .days { display: flex; gap: 6px; overflow-x: auto; padding: 12px 16px; border-bottom: 1px solid #e5e7eb; scrollbar-width: none; }
+    .days button { border: 1px solid #cbd5e1; background: #fff; border-radius: 999px; padding: 6px 12px; font-size: 13px; white-space: nowrap; cursor: pointer; }
+    .days button.active { background: #2563eb; border-color: #2563eb; color: #fff; }
+    table { width: 100%; border-collapse: collapse; }
+    th { position: sticky; top: 0; background: #f1f5f9; text-align: left; font-size: 12px; text-transform: uppercase; color: #64748b; padding: 10px 16px; }
+    td { padding: 12px 16px; border-bottom: 1px solid #f1f5f9; font-size: 15px; }
+    td.temp { text-align: right; font-weight: 600; }
+    th:last-child { text-align: right; }
+    tr.now { background: #eff6ff; }
+    .hot { color: #dc2626; } .warm { color: #ea580c; } .cool { color: #2563eb; }
+    .state { padding: 40px 16px; text-align: center; color: #64748b; }
+    .state button { margin-top: 12px; padding: 8px 16px; border: 0; border-radius: 8px; background: #2563eb; color: #fff; }
+    footer { text-align: center; font-size: 12px; color: #94a3b8; padding: 16px; }
+  </style>
+</head>
+<body>
+  <div id="app" class="app">
+    <header>
+      <h1>🌤️ Prakiraan Cuaca Jakarta</h1>
+      <p>Suhu per jam (°C) dari Open-Meteo API</p>
+      <div class="summary" v-if="filtered.length">
+        <div class="card"><small>Min</small><b>{{ minTemp }}°</b></div>
+        <div class="card"><small>Rata-rata</small><b>{{ avgTemp }}°</b></div>
+        <div class="card"><small>Max</small><b>{{ maxTemp }}°</b></div>
+      </div>
+    </header>
+
+    <div v-if="loading" class="state">Memuat data cuaca...</div>
+    <div v-else-if="error" class="state">
+      Gagal mengambil data: {{ error }}<br />
+      <button @click="fetchCuaca">Coba lagi</button>
+    </div>
+
+    <template v-else>
+      <nav class="days">
+        <button v-for="d in days" :key="d" :class="{ active: d === selectedDay }" @click="selectedDay = d">
+          {{ formatDay(d) }}
+        </button>
+      </nav>
+      <table>
+        <thead>
+          <tr><th>Waktu (time)</th><th>Suhu (temperature_2m)</th></tr>
+        </thead>
+        <tbody>
+          <tr v-for="item in filtered" :key="item.time" :class="{ now: item.time === currentHour }">
+            <td>{{ formatJam(item.time) }}</td>
+            <td class="temp" :class="tempClass(item.temp)">{{ item.temp }} {{ unit }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </template>
+
+    <footer>I KD WIJAYA SASHMITHA ADHI C · 048068753 · Tugas 2 STSI4303</footer>
+  </div>
+
+  <script>
+    const { createApp, ref, computed, onMounted } = Vue;
+
+    const API_URL = 'https://api.open-meteo.com/v1/forecast?latitude=-6.2&longitude=106.8&hourly=temperature_2m&timezone=Asia%2FJakarta';
+
+    createApp({
+      setup() {
+        const data = ref([]);          // [{ time, temp }]
+        const unit = ref('°C');
+        const loading = ref(true);
+        const error = ref('');
+        const selectedDay = ref('');
+
+        // Ambil data dari API
+        async function fetchCuaca() {
+          loading.value = true;
+          error.value = '';
+          try {
+            const res = await fetch(API_URL);
+            if (!res.ok) throw new Error('HTTP ' + res.status);
+            const json = await res.json();
+            unit.value = json.hourly_units.temperature_2m;
+            // gabungkan array time & temperature_2m jadi list objek
+            data.value = json.hourly.time.map((t, i) => ({
+              time: t,
+              temp: json.hourly.temperature_2m[i],
+            }));
+            selectedDay.value = data.value[0].time.slice(0, 10);
+          } catch (e) {
+            error.value = e.message;
+          } finally {
+            loading.value = false;
+          }
+        }
+
+        // Daftar tanggal unik (7 hari)
+        const days = computed(() => [...new Set(data.value.map(d => d.time.slice(0, 10)))]);
+        // Data untuk tanggal yang dipilih (24 jam)
+        const filtered = computed(() => data.value.filter(d => d.time.startsWith(selectedDay.value)));
+
+        const temps = computed(() => filtered.value.map(d => d.temp));
+        const minTemp = computed(() => Math.min(...temps.value).toFixed(1));
+        const maxTemp = computed(() => Math.max(...temps.value).toFixed(1));
+        const avgTemp = computed(() => (temps.value.reduce((a, b) => a + b, 0) / temps.value.length).toFixed(1));
+
+        // Jam sekarang (WIB) untuk highlight baris
+        const now = new Date(Date.now() + 7 * 3600 * 1000).toISOString();
+        const currentHour = now.slice(0, 13) + ':00';
+
+        const formatDay = d => new Date(d + 'T00:00').toLocaleDateString('id-ID', { weekday: 'short', day: 'numeric', month: 'short' });
+        const formatJam = t => t.slice(11, 16) + ' WIB';
+        const tempClass = t => (t >= 31 ? 'hot' : t >= 27 ? 'warm' : 'cool');
+
+        onMounted(fetchCuaca);
+
+        return { data, unit, loading, error, selectedDay, days, filtered, minTemp, maxTemp, avgTemp,
+                 currentHour, fetchCuaca, formatDay, formatJam, tempClass };
+      },
+    }).mount('#app');
+  </script>
+</body>
+</html>

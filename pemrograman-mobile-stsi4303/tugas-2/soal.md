@@ -1,0 +1,23 @@
+SOAL TUGAS
+
+Buatlah proyek baru untuk menampilkan data cuaca dari sebuah API online dengan alamat:
+https://api.open-meteo.com/v1/forecast?latitude=-6.2&longitude=106.8&hourly=temperature_2m
+
+(API ini akan menampilkan data prakiraan cuaca di Jakarta, termasuk temperatur per jam).
+
+Buat tampilan aplikasi sederhana dengan ketentuan:
+Tampilkan data atribut/kolom/field berikut:
+time (waktu pengukuran)
+temperature_2m (suhu per jam dalam °C)
+Desain tampilan agar mudah dibaca, misalnya dalam bentuk list atau tabel sederhana.
+
+Pelaporan dan Penilaian
+Laporkan kegiatan praktikum yang telah dilakukan dengan mengupload source code dan link rekaman video yang menampilan:
+
+Perkenalan identitas mahasiswa
+Langkah-langkah praktik yang Anda lakukan disertai aktivitas kegiatan mahasiswa
+Hasil dan Analisa praktik yang telah dilakukan
+Kata-kata penutup dari mahasiswa
+Catatan:
+
+Jika kesulitan menampilkan semua data, cukup tampilkan 10 data pertama.

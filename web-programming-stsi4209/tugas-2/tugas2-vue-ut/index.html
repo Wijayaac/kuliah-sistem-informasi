@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="SITTA Universitas Terbuka - Tugas Praktik 2 Vue.js" />
+    <title>Beranda | SITTA Universitas Terbuka</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <!-- Halaman navigasi utama: menu ke stok.html dan tracking.html -->
+    <div id="app" v-cloak style="display: contents">
+      <header class="navbar">
+        <nav class="container" aria-label="Navigasi utama">
+          <a href="index.html" class="brand">
+            <span class="brand-logo"><i class="bi bi-book-half" aria-hidden="true"></i></span>
+            SITTA
+          </a>
+          <button type="button" class="nav-toggle" @click="navOpen = !navOpen" :aria-expanded="navOpen" aria-label="Buka menu">
+            <i class="bi" :class="navOpen ? 'bi-x-lg' : 'bi-list'"></i>
+          </button>
+          <ul class="nav-menu" :class="{ open: navOpen }">
+            <li><a href="index.html" class="nav-link active" aria-current="page"><i class="bi bi-house"></i> Beranda</a></li>
+            <li><a href="stok.html" class="nav-link"><i class="bi bi-journal-bookmark"></i> Stok Bahan Ajar</a></li>
+            <li><a href="tracking.html" class="nav-link"><i class="bi bi-truck"></i> Tracking DO</a></li>
+          </ul>
+        </nav>
+      </header>
+
+      <main class="container">
+        <section class="hero">
+          <div>
+            <p style="opacity: 0.8">Sistem Informasi Tiras dan Transaksi Bahan Ajar</p>
+            <!-- [mustache] sapaan dari computed -->
+            <h1>{{ sapaan }}, selamat datang di SITTA</h1>
+            <p style="opacity: 0.8">Tugas Praktik 2 &middot; Pemrograman Berbasis Web (STSI4209) &middot; Vue.js 3</p>
+            <p class="identity">I KD WIJAYA SASHMITHA ADHI C &middot; NIM 048068753</p>
+          </div>
+          <div class="clock" v-text="jam"></div>
+        </section>
+
+        <section class="stats" aria-label="Ringkasan data">
+          <article class="stat-card">
+            <span class="icon"><i class="bi bi-journals"></i></span>
+            <div>
+              <div class="value">{{ jumlahJudul }}</div>
+              <div class="label">Judul bahan ajar</div>
+            </div>
+          </article>
+          <article class="stat-card">
+            <span class="icon icon-warning"><i class="bi bi-exclamation-triangle"></i></span>
+            <div>
+              <div class="value">{{ perluReorder }}</div>
+              <div class="label">Perlu re-order</div>
+            </div>
+          </article>
+          <article class="stat-card">
+            <span class="icon"><i class="bi bi-truck"></i></span>
+            <div>
+              <div class="value">{{ jumlahDO }}</div>
+              <div class="label">Delivery Order</div>
+            </div>
+          </article>
+        </section>
+
+        <section class="card" aria-labelledby="menuTitle">
+          <h2 id="menuTitle" style="margin-bottom: 1rem; font-size: 1.15rem">Menu Utama</h2>
+          <div class="menu-grid">
+            <a href="stok.html" class="menu-card">
+              <i class="bi bi-journal-bookmark"></i>
+              <h3>Stok Bahan Ajar</h3>
+              <p>Lihat, filter, urutkan, edit, dan tambah stok bahan ajar per UT-Daerah.</p>
+            </a>
+            <a href="tracking.html" class="menu-card">
+              <i class="bi bi-truck"></i>
+              <h3>Tracking DO</h3>
+              <p>Lacak Delivery Order dan buat DO baru dengan nomor otomatis.</p>
+            </a>
+          </div>
+        </section>
+      </main>
+
+      <footer class="footer">&copy; 2026 SITTA &middot; Universitas Terbuka &middot; Tugas Praktik 2 (Vue 3)</footer>
+    </div>
+
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="js/dataBahanAjar.js"></script>
+    <script>
+      // Vue kecil untuk beranda: ringkasan data + jam (logika utama ada di stok-app.js & tracking-app.js)
+      // Data dibaca dari localStorage bila sudah diubah di halaman lain, jika belum pakai data dummy
+      function baca(key, fallback) {
+        try {
+          const v = JSON.parse(localStorage.getItem(key));
+          return v || fallback;
+        } catch (e) {
+          return fallback;
+        }
+      }
+      Vue.createApp({
+        data() {
+          return {
+            stok: baca("sitta-vue-stok", dataBahanAjar.stok),
+            tracking: baca("sitta-vue-tracking", dataBahanAjar.tracking),
+            sekarang: new Date(),
+            navOpen: false,
+          };
+        },
+        computed: {
+          jumlahJudul() {
+            return this.stok.length;
+          },
+          perluReorder() {
+            return this.stok.filter((s) => s.qty < s.safety || s.qty === 0).length;
+          },
+          jumlahDO() {
+            return Object.keys(this.tracking).length;
+          },
+          jam() {
+            return this.sekarang.toLocaleTimeString("id-ID", { hour: "2-digit", minute: "2-digit", second: "2-digit" });
+          },
+          sapaan() {
+            const h = this.sekarang.getHours();
+            if (h < 11) return "Selamat pagi";
+            if (h < 15) return "Selamat siang";
+            if (h < 18) return "Selamat sore";
+            return "Selamat malam";
+          },
+        },
+        mounted() {
+          setInterval(() => (this.sekarang = new Date()), 1000);
+        },
+      }).mount("#app");
+    </script>
+  </body>
+</html>
