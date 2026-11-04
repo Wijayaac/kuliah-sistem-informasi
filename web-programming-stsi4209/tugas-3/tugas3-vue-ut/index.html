@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="SITTA Universitas Terbuka - Tugas Praktik 3 Vue Component & Template" />
+    <title>SITTA UT (Tugas 3)</title>
+    <link rel="icon" type="image/svg+xml" href="assets/img/logo-sitta.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
+    <link rel="stylesheet" href="assets/css/style.css" />
+  </head>
+  <body>
+    <!-- Root: mount #app. Routing cukup dengan tab state di root -->
+    <div id="app" v-cloak>
+      <header class="navbar">
+        <nav class="container wide" aria-label="Navigasi utama">
+          <a href="#stok" class="brand" @click.prevent="tab = 'stok'">
+            <span class="brand-logo"><i class="bi bi-book-half" aria-hidden="true"></i></span>
+            SITTA
+          </a>
+          <!-- [v-on:click] mengganti tab; [v-bind:class] tab aktif diberi kelas active -->
+          <ul class="nav-menu tab-menu" role="tablist">
+            <li><button type="button" class="nav-link" :class="{ active: tab === 'stok' }" @click="tab = 'stok'"><i class="bi bi-journal-bookmark"></i> Stok</button></li>
+            <li><button type="button" class="nav-link" :class="{ active: tab === 'tracking' }" @click="tab = 'tracking'"><i class="bi bi-truck"></i> Tracking DO</button></li>
+            <li><button type="button" class="nav-link" :class="{ active: tab === 'order' }" @click="tab = 'order'"><i class="bi bi-cart-plus"></i> Pemesanan</button></li>
+          </ul>
+        </nav>
+      </header>
+
+      <main class="container wide">
+        <section class="hero hero-sm">
+          <div>
+            <p style="opacity: 0.8">Sistem Informasi Tiras dan Transaksi Bahan Ajar</p>
+            <!-- [mustache] judul mengikuti tab aktif -->
+            <h1>{{ tab === 'stok' ? 'Stok Bahan Ajar' : tab === 'tracking' ? 'Tracking Delivery Order' : 'Pemesanan Bahan Ajar (DO Baru)' }}</h1>
+            <p class="identity">Tugas Praktik 3 &middot; I KD WIJAYA SASHMITHA ADHI C &middot; NIM 048068753</p>
+          </div>
+          <div class="hero-stats">
+            <div><strong v-text="state.stok.length"></strong><span>Judul</span></div>
+            <div><strong v-text="jumlahReorder"></strong><span>Perlu re-order</span></div>
+            <div><strong v-text="jumlahDO"></strong><span>DO</span></div>
+          </div>
+        </section>
+
+        <!-- [v-show] tiap halaman = section, hanya disembunyikan agar state komponen tidak hilang -->
+        <section v-show="tab === 'stok'">
+          <ba-stock-table
+            :items="state.stok"
+            :upbjj-list="state.upbjjList"
+            :kategori-list="state.kategoriList"
+            @create="handleCreateStok"
+            @update="handleUpdateStok"
+            @delete="handleDeleteStok"
+          ></ba-stock-table>
+        </section>
+        <section v-show="tab === 'tracking'">
+          <do-tracking :data="state.tracking" :paket="state.paket" :ekspedisi="state.pengirimanList" :highlight="lastDO" @add-progress="handleAddProgress"></do-tracking>
+        </section>
+        <section v-show="tab === 'order'">
+          <order-form :paket="state.paket" :ekspedisi="state.pengirimanList" :stok="state.stok" :tracking="state.tracking" @created="handleNewDO"></order-form>
+        </section>
+
+        <p class="table-footer" style="text-align: center; margin-bottom: 1.5rem">
+          <button type="button" class="btn-link small" @click="resetData"><i class="bi bi-database-x"></i> Kembalikan data awal (dataBahanAjar.json)</button>
+        </p>
+      </main>
+
+      <footer class="footer">&copy; 2026 SITTA &middot; Universitas Terbuka &middot; Tugas Praktik 3 (Vue Component &amp; Template)</footer>
+
+      <!-- Modal global (pop up konfirmasi) dipanggil lewat this.$refs.modal -->
+      <app-modal ref="modal"></app-modal>
+
+      <div class="toast-container" aria-live="polite">
+        <div v-for="t in toasts" :key="t.id" class="toast" :class="'toast-' + t.tipe">
+          <i class="bi" :class="toastIcon(t.tipe)"></i>
+          <span>{{ t.pesan }}</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Templates: isi tpl-stock, tpl-tracking, tpl-order, tpl-badge, tpl-modal
+         ada di folder templates/*.html dan dimuat oleh Api.loadTemplates() -->
+
+    <!-- Scripts (urutan penting) -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.7.16/dist/vue.js"></script>
+    <script src="js/services/api.js"></script>
+    <script src="js/components/stock-table.js"></script>
+    <script src="js/components/do-tracking.js"></script>
+    <script src="js/components/order-form.js"></script>
+    <script src="js/components/status-badge.js"></script>
+    <script src="js/components/app-modal.js"></script>
+    <script src="js/app.js"></script>
+  </body>
+</html>

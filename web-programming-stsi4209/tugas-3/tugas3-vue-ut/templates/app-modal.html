@@ -1,0 +1,33 @@
+<template id="tpl-modal">
+  <!-- [v-if] modal hanya dirender saat visible; @click.self = klik latar menutup -->
+  <div class="modal vue-modal" v-if="visible" role="dialog" aria-modal="true" @click.self="close">
+    <div class="modal-content" :class="{ wide: wide && !dialog }">
+      <div class="modal-header">
+        <h2>{{ judul }}</h2>
+        <button type="button" class="modal-close" @click="close" aria-label="Tutup">&times;</button>
+      </div>
+
+      <!-- Mode konfirmasi -->
+      <template v-if="dialog">
+        <div class="modal-alert">
+          <div class="alert-icon" :class="dialog.danger ? 'text-danger' : 'text-info'">
+            <i class="bi" :class="dialog.danger ? 'bi-trash3' : 'bi-question-circle'"></i>
+          </div>
+          <p v-html="dialog.message"></p>
+        </div>
+        <div class="modal-actions">
+          <button type="button" class="btn btn-outline" @click="answer(false)">Batal</button>
+          <button type="button" class="btn" :class="dialog.danger ? 'btn-danger' : 'btn-primary'" @click="answer(true)">{{ dialog.okText }}</button>
+        </div>
+      </template>
+
+      <!-- Mode slot: isi dari komponen pemanggil -->
+      <template v-else>
+        <slot></slot>
+        <div class="modal-actions" v-if="$slots.footer">
+          <slot name="footer"></slot>
+        </div>
+      </template>
+    </div>
+  </div>
+</template>

@@ -1,0 +1,106 @@
+<template id="tpl-tracking">
+  <div class="two-col">
+    <!-- ===== Kolom kiri: pencarian + daftar DO ===== -->
+    <section class="card">
+      <h2 class="card-title"><i class="bi bi-search"></i> Cari Delivery Order</h2>
+      <div class="mode-switch" role="radiogroup">
+        <!-- [v-model radio] pilih mode pencarian -->
+        <label :class="{ active: mode === 'do' }"><input type="radio" value="do" v-model="mode" /> Nomor DO</label>
+        <label :class="{ active: mode === 'nim' }"><input type="radio" value="nim" v-model="mode" /> NIM</label>
+      </div>
+      <!-- [@keyup.enter] submit, [@keyup.esc] reset -->
+      <div class="sort-group">
+        <div class="input-icon" style="flex: 1">
+          <i class="bi" :class="mode === 'do' ? 'bi-upc-scan' : 'bi-person-badge'"></i>
+          <input type="search" v-model.trim="keyword" @keyup.enter="cari" @keyup.esc="resetCari" :placeholder="mode === 'do' ? 'cth. DO2025-0001' : 'cth. 123456789'" />
+        </div>
+        <button type="button" class="btn btn-secondary" @click="cari">Cari</button>
+      </div>
+      <p class="hint"><kbd>Enter</kbd> = cari &middot; <kbd>Esc</kbd> = reset pencarian</p>
+
+      <!-- [v-show] info hasil pencarian -->
+      <p class="active-filters" v-show="query !== null">
+        Hasil {{ mode === 'do' ? 'Nomor DO' : 'NIM' }} "<strong>{{ query }}</strong>": {{ hasilCari.length }} DO
+        <button type="button" class="btn-link small" @click="resetCari">reset</button>
+      </p>
+
+      <!-- [v-if / v-else] daftar atau pesan kosong -->
+      <ul class="do-list" v-if="hasilCari.length">
+        <!-- [v-for] dengan index -->
+        <li v-for="(d, i) in hasilCari" :key="d.nomor">
+          <button type="button" class="do-item" :class="{ selected: d.nomor === selected }" @click="selected = d.nomor">
+            <span>
+              <span class="do-no">{{ i + 1 }}. {{ d.nomor }}</span><br />
+              <small class="text-muted">{{ d.nama }} &middot; {{ d.nim }}</small>
+            </span>
+            <span class="badge" :class="d.status === 'Diterima' ? 'badge-success' : d.status === 'Diproses' ? 'badge-warning' : 'badge-info'">{{ d.status }}</span>
+          </button>
+        </li>
+      </ul>
+      <div class="empty-state" v-else>
+        <i class="bi bi-search"></i>
+        DO tidak ditemukan. Tekan <kbd>Esc</kbd> untuk reset.
+      </div>
+    </section>
+
+    <!-- ===== Kolom kanan: detail DO ===== -->
+    <section class="card">
+      <template v-if="detail">
+        <div class="do-header">
+          <div>
+            <small class="text-muted">Nomor DO</small>
+            <h3 class="do-number">{{ detail.nomor }}</h3>
+          </div>
+          <span class="badge badge-info">{{ detail.status }}</span>
+        </div>
+        <div class="progress"><div class="progress-bar" :class="{ done: tahapIndex === 3 }" :style="{ width: ((tahapIndex + 1) / tahapList.length) * 100 + '%' }"></div></div>
+        <ol class="steps">
+          <li v-for="(t, i) in tahapList" :key="t" :class="{ reached: i <= tahapIndex }"><i class="bi" :class="['bi-box-seam', 'bi-truck', 'bi-geo-alt', 'bi-check-circle'][i]"></i>{{ t }}</li>
+        </ol>
+
+        <!-- [v-for] pada OBJECT: (nilai, label, index) -->
+        <dl class="detail-grid" style="margin-top: 1rem">
+          <template v-for="(nilai, label, idx) in infoDetail">
+            <dt :key="'dt' + idx">{{ label }}</dt>
+            <dd :key="'dd' + idx">{{ nilai }}</dd>
+          </template>
+        </dl>
+
+        <h4 class="sub-title"><i class="bi bi-clock-history"></i> Riwayat Perjalanan</h4>
+        <ul class="timeline">
+          <li v-for="(p, i) in perjalananTerbaru" :key="i + p.waktu">
+            <span>{{ p.keterangan }}</span>
+            <!-- [FILTER] waktu -->
+            <time>{{ p.waktu | waktu }}</time>
+          </li>
+        </ul>
+
+        <!-- Tambah status progress perjalanan: waktu dari Date (local time), keterangan dari input -->
+        <form class="progress-form" novalidate @submit.prevent="kirimProgress">
+          <h4 class="sub-title"><i class="bi bi-plus-circle"></i> Tambah Progress Pengiriman</h4>
+          <div class="form-grid">
+            <div class="form-group span-all">
+              <label for="pKet">Keterangan *</label>
+              <input id="pKet" type="text" v-model="progress.keterangan" :class="{ 'is-invalid': progressSubmitted && progressError }" placeholder="cth. Diteruskan ke Hub DENPASAR" />
+              <small class="error-text">{{ progressSubmitted ? progressError : '' }}</small>
+            </div>
+            <div class="form-group">
+              <label for="pStatus">Status DO</label>
+              <select id="pStatus" v-model="progress.status">
+                <option v-for="t in tahapList" :key="t" :value="t">{{ t }}</option>
+              </select>
+            </div>
+            <div class="form-group" style="align-self: end">
+              <button type="submit" class="btn btn-primary btn-block"><i class="bi bi-send"></i> Simpan Progress</button>
+            </div>
+          </div>
+          <p class="hint">Waktu diisi otomatis dari jam lokal (Date) saat disimpan.</p>
+        </form>
+      </template>
+      <div class="empty-state" v-else>
+        <i class="bi bi-truck"></i>
+        Pilih DO di sebelah kiri atau cari berdasarkan Nomor DO / NIM.
+      </div>
+    </section>
+  </div>
+</template>

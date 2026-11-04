@@ -1,0 +1,241 @@
+<template id="tpl-stock">
+  <div class="stock-page">
+    <!-- Ringkasan status: [v-for] pada OBJECT (value, key, index) = name based index -->
+    <section class="stats" aria-label="Ringkasan stok">
+      <article class="stat-card">
+        <span class="icon"><i class="bi bi-journals"></i></span>
+        <div>
+          <div class="value">{{ items.length }}</div>
+          <div class="label">Total judul</div>
+        </div>
+      </article>
+      <article class="stat-card" v-for="(jumlah, status, i) in ringkasan" :key="status">
+        <span class="icon" :class="['icon-success', 'icon-warning', 'icon-danger'][i]">
+          <i class="bi" :class="['bi-check-circle', 'bi-exclamation-triangle', 'bi-x-octagon'][i]"></i>
+        </span>
+        <div>
+          <div class="value">{{ jumlah }}</div>
+          <div class="label">{{ status }}</div>
+        </div>
+      </article>
+    </section>
+
+    <!-- ===== Form tambah bahan ajar (CREATE) ===== -->
+    <section class="card">
+      <div class="toolbar" style="margin-bottom: 0">
+        <h2 class="card-title" style="margin: 0"><i class="bi bi-plus-square"></i> Tambah Bahan Ajar Baru</h2>
+        <!-- [v-if / v-else] label tombol -->
+        <button type="button" class="btn" :class="showForm ? 'btn-outline' : 'btn-primary'" @click="showForm = !showForm">
+          <template v-if="showForm"><i class="bi bi-chevron-up"></i> Tutup Form</template>
+          <template v-else><i class="bi bi-plus-lg"></i> Tambah Bahan Ajar</template>
+        </button>
+      </div>
+      <!-- [v-show] form disembunyikan saja, isian tidak hilang. [@keydown.enter] Enter = simpan -->
+      <form v-show="showForm" class="fade-in" style="margin-top: 1.2rem" novalidate @submit.prevent="simpanBaru" @keydown.enter.prevent="simpanBaru">
+        <div class="form-grid">
+          <div class="form-group">
+            <label for="fKode">Kode Mata Kuliah *</label>
+            <!-- [v-model] two-way binding, [v-bind:class] merah bila error -->
+            <input id="fKode" type="text" v-model="form.kode" :class="{ 'is-invalid': err('kode') }" placeholder="cth. MKDU4111" maxlength="8" />
+            <small class="error-text">{{ err('kode') }}</small>
+          </div>
+          <div class="form-group">
+            <label for="fJudul">Judul Mata Kuliah *</label>
+            <input id="fJudul" type="text" v-model="form.judul" :class="{ 'is-invalid': err('judul') }" placeholder="cth. Pendidikan Kewarganegaraan" />
+            <small class="error-text">{{ err('judul') }}</small>
+          </div>
+          <div class="form-group">
+            <label for="fKat">Kategori *</label>
+            <select id="fKat" v-model="form.kategori" :class="{ 'is-invalid': err('kategori') }">
+              <option value="">-- Pilih kategori --</option>
+              <option v-for="k in kategoriList" :key="k" :value="k">{{ k }}</option>
+            </select>
+            <small class="error-text">{{ err('kategori') }}</small>
+          </div>
+          <div class="form-group">
+            <label for="fUp">UT-Daerah *</label>
+            <select id="fUp" v-model="form.upbjj" :class="{ 'is-invalid': err('upbjj') }">
+              <option value="">-- Pilih UT-Daerah --</option>
+              <option v-for="u in upbjjList" :key="u" :value="u">{{ u }}</option>
+            </select>
+            <small class="error-text">{{ err('upbjj') }}</small>
+          </div>
+          <div class="form-group">
+            <label for="fRak">Lokasi Rak *</label>
+            <input id="fRak" type="text" v-model.trim="form.lokasiRak" :class="{ 'is-invalid': err('lokasiRak') }" placeholder="cth. R2-B1" />
+            <small class="error-text">{{ err('lokasiRak') }}</small>
+          </div>
+          <div class="form-group">
+            <label for="fHarga">Harga (Rp) *</label>
+            <!-- [v-model.number] otomatis jadi Number -->
+            <input id="fHarga" type="number" min="0" step="1000" v-model.number="form.harga" :class="{ 'is-invalid': err('harga') }" placeholder="cth. 50000" />
+            <small class="error-text">{{ err('harga') }}</small>
+          </div>
+          <div class="form-group">
+            <label for="fQty">Jumlah Stok (buah) *</label>
+            <input id="fQty" type="number" min="0" v-model.number="form.qty" :class="{ 'is-invalid': err('qty') }" placeholder="cth. 12" />
+            <small class="error-text">{{ err('qty') }}</small>
+          </div>
+          <div class="form-group">
+            <label for="fSafety">Safety Stock (buah) *</label>
+            <input id="fSafety" type="number" min="1" v-model.number="form.safety" :class="{ 'is-invalid': err('safety') }" placeholder="cth. 5" />
+            <small class="error-text">{{ err('safety') }}</small>
+          </div>
+          <div class="form-group span-all">
+            <label for="fCat">Catatan (boleh HTML sederhana, cth. &lt;em&gt;Edisi baru&lt;/em&gt;)</label>
+            <input id="fCat" type="text" v-model="form.catatanHTML" placeholder="Catatan opsional" />
+            <div v-if="form.catatanHTML" class="preview-box">Pratinjau: <span v-html="form.catatanHTML"></span></div>
+          </div>
+        </div>
+        <p class="hint"><i class="bi bi-keyboard"></i> Tekan <kbd>Enter</kbd> untuk langsung menyimpan.</p>
+        <div class="modal-actions">
+          <button type="button" class="btn btn-outline" @click="batalBaru">Batal</button>
+          <button type="submit" class="btn btn-primary" :disabled="submitted && Object.keys(formErrors).length > 0"><i class="bi bi-save"></i> Simpan</button>
+        </div>
+      </form>
+    </section>
+
+    <!-- ===== Filter, sort, tabel ===== -->
+    <section class="card">
+      <div class="filter-grid">
+        <div class="form-group">
+          <label for="sCari">Cari</label>
+          <div class="input-icon">
+            <i class="bi bi-search" aria-hidden="true"></i>
+            <input id="sCari" type="search" v-model="filter.keyword" placeholder="Kode / judul..." />
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="sUp">UT-Daerah</label>
+          <select id="sUp" v-model="filter.upbjj">
+            <option value="">Semua UT-Daerah</option>
+            <option v-for="u in upbjjList" :key="u" :value="u">{{ u }}</option>
+          </select>
+        </div>
+        <!-- [v-if / v-else] DEPENDENT OPTIONS: kategori muncul setelah UT-Daerah dipilih -->
+        <div class="form-group fade-in" v-if="filter.upbjj">
+          <label for="sKat">Kategori di {{ filter.upbjj }}</label>
+          <select id="sKat" v-model="filter.kategori">
+            <option value="">Semua kategori</option>
+            <option v-for="k in kategoriOptions" :key="k.nama" :value="k.nama" :disabled="k.jumlah === 0">{{ k.nama }} ({{ k.jumlah }})</option>
+          </select>
+        </div>
+        <div class="form-group" v-else>
+          <label>Kategori</label>
+          <p class="hint" style="padding: 0.7rem 0"><i class="bi bi-info-circle"></i> Pilih UT-Daerah dulu.</p>
+        </div>
+        <div class="form-group">
+          <label for="sSort">Urutkan</label>
+          <div class="sort-group">
+            <select id="sSort" v-model="filter.sortBy">
+              <option value="judul">Judul</option>
+              <option value="qty">Stok</option>
+              <option value="harga">Harga</option>
+            </select>
+            <button type="button" class="btn btn-outline btn-icon" @click="filter.sortDir = filter.sortDir === 'asc' ? 'desc' : 'asc'" :title="filter.sortDir === 'asc' ? 'Naik' : 'Turun'">
+              <i class="bi" :class="filter.sortDir === 'asc' ? 'bi-sort-up' : 'bi-sort-down'"></i>
+            </button>
+          </div>
+        </div>
+        <label class="check-row">
+          <input type="checkbox" v-model="filter.reorderOnly" />
+          Perlu re-order (qty &lt; safety / kosong)
+        </label>
+        <button type="button" class="btn btn-secondary" @click="resetFilter" :disabled="!adaFilter"><i class="bi bi-arrow-counterclockwise"></i> Reset</button>
+      </div>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>No</th>
+              <th class="sortable" @click="toggleSort('judul')">Kode / Judul <i class="bi bi-arrow-down-up" v-show="filter.sortBy === 'judul'"></i></th>
+              <th>Kategori</th>
+              <th>UT-Daerah</th>
+              <th>Lokasi Rak</th>
+              <th class="sortable num" @click="toggleSort('harga')">Harga <i class="bi bi-arrow-down-up" v-show="filter.sortBy === 'harga'"></i></th>
+              <th class="sortable num" @click="toggleSort('qty')">Stok <i class="bi bi-arrow-down-up" v-show="filter.sortBy === 'qty'"></i></th>
+              <th class="num">Safety</th>
+              <th>Status <small class="text-muted">(hover)</small></th>
+              <th>Aksi</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- [v-for] dengan zero-based index i (No = i + 1) dari computed sortedItems -->
+            <tr v-for="(s, i) in sortedItems" :key="s.kode + s.upbjj" :class="{ 'row-kosong': s.qty === 0, 'row-menipis': s.qty > 0 && s.qty < s.safety }">
+              <td>{{ i + 1 }}</td>
+              <td>
+                <div class="kode" v-text="s.kode"></div>
+                <div class="judul">{{ s.judul }}</div>
+              </td>
+              <td><span class="badge badge-info">{{ s.kategori }}</span></td>
+              <td>{{ s.upbjj }}</td>
+              <td>{{ s.lokasiRak }}</td>
+              <!-- [FILTER] formatting teks: rupiah & buah -->
+              <td class="num">{{ s.harga | rupiah }}</td>
+              <td class="num">
+                <strong>{{ s.qty | buah }}</strong>
+                <div class="qty-bar"><span :style="{ width: persenQty(s) + '%' }" :class="{ warn: s.qty < s.safety, danger: s.qty === 0 }"></span></div>
+              </td>
+              <td class="num">{{ s.safety | buah }}</td>
+              <!-- Custom component + props -->
+              <td><status-badge :qty="s.qty" :safety="s.safety" :catatan="s.catatanHTML"></status-badge></td>
+              <td>
+                <div class="row-actions">
+                  <button type="button" class="btn btn-outline btn-sm" @click="bukaEdit(s)" :title="'Edit ' + s.kode"><i class="bi bi-pencil-square"></i></button>
+                  <button type="button" class="btn btn-danger-outline btn-sm" @click="hapus(s)" :title="'Hapus ' + s.kode"><i class="bi bi-trash3"></i></button>
+                </div>
+              </td>
+            </tr>
+            <tr v-if="sortedItems.length === 0" class="empty-row">
+              <td colspan="10"><i class="bi bi-inbox"></i> Tidak ada data yang cocok. <button type="button" class="btn-link" @click="resetFilter">Reset filter</button></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="table-footer">Menampilkan <strong>{{ sortedItems.length }}</strong> dari {{ items.length }} bahan ajar.</p>
+    </section>
+
+    <!-- ===== Modal edit (UPDATE) memakai <app-modal> + SLOT ===== -->
+    <app-modal :show="!!editForm" :title="editKey ? 'Edit Stok · ' + editKey.kode : ''" wide @close="tutupEdit">
+      <template v-if="editForm">
+        <p class="text-muted small" style="margin-bottom: 1rem">{{ editKey.judul }} &middot; UT-Daerah {{ editKey.upbjj }}</p>
+        <form novalidate @submit.prevent="simpanEdit" @keydown.enter.prevent="simpanEdit">
+          <div class="form-grid">
+            <div class="form-group">
+              <label for="eQty">Jumlah Stok (buah)</label>
+              <input id="eQty" type="number" min="0" v-model.number="editForm.qty" :class="{ 'is-invalid': editSubmitted && editErrors.qty }" />
+              <small class="error-text">{{ editSubmitted ? editErrors.qty : '' }}</small>
+            </div>
+            <div class="form-group">
+              <label for="eSafety">Safety Stock (buah)</label>
+              <input id="eSafety" type="number" min="1" v-model.number="editForm.safety" :class="{ 'is-invalid': editSubmitted && editErrors.safety }" />
+              <small class="error-text">{{ editSubmitted ? editErrors.safety : '' }}</small>
+            </div>
+            <div class="form-group">
+              <label for="eHarga">Harga (Rp)</label>
+              <input id="eHarga" type="number" min="0" step="1000" v-model.number="editForm.harga" :class="{ 'is-invalid': editSubmitted && editErrors.harga }" />
+              <small class="error-text">{{ editSubmitted ? editErrors.harga : '' }}</small>
+            </div>
+            <div class="form-group">
+              <label for="eRak">Lokasi Rak</label>
+              <input id="eRak" type="text" v-model.trim="editForm.lokasiRak" :class="{ 'is-invalid': editSubmitted && editErrors.lokasiRak }" />
+              <small class="error-text">{{ editSubmitted ? editErrors.lokasiRak : '' }}</small>
+            </div>
+            <div class="form-group span-all">
+              <label for="eCat">Catatan (HTML)</label>
+              <input id="eCat" type="text" v-model="editForm.catatanHTML" />
+              <div class="preview-box">Pratinjau status: <status-badge :qty="Number(editForm.qty) || 0" :safety="Number(editForm.safety) || 1" :catatan="editForm.catatanHTML"></status-badge> <span v-html="editForm.catatanHTML"></span></div>
+            </div>
+          </div>
+          <p class="hint"><i class="bi bi-keyboard"></i> Tekan <kbd>Enter</kbd> untuk menyimpan, <kbd>Esc</kbd> untuk batal.</p>
+        </form>
+      </template>
+      <!-- Named slot "footer" -->
+      <template #footer>
+        <button type="button" class="btn btn-outline" @click="tutupEdit">Batal</button>
+        <button type="button" class="btn btn-primary" @click="simpanEdit"><i class="bi bi-save"></i> Simpan Perubahan</button>
+      </template>
+    </app-modal>
+  </div>
+</template>

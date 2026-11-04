@@ -1,0 +1,87 @@
+<template id="tpl-order">
+  <div class="two-col">
+    <section class="card">
+      <h2 class="card-title"><i class="bi bi-cart-plus"></i> Form Delivery Order Baru</h2>
+      <form novalidate @submit.prevent="simpan">
+        <div class="form-group">
+          <label for="oNo">Nomor DO (otomatis)</label>
+          <!-- [v-bind:value] one-way binding, readonly -->
+          <input id="oNo" type="text" :value="nomorDO" readonly />
+        </div>
+        <div class="form-grid">
+          <div class="form-group">
+            <label for="oNim">NIM *</label>
+            <input id="oNim" type="text" inputmode="numeric" maxlength="9" v-model.trim="form.nim" :class="{ 'is-invalid': err('nim') }" placeholder="9 digit angka" />
+            <small class="error-text" v-if="err('nim')">{{ err('nim') }}</small>
+            <small class="hint" v-else-if="nimInfo">{{ nimInfo }}</small>
+          </div>
+          <div class="form-group">
+            <label for="oNama">Nama *</label>
+            <input id="oNama" type="text" v-model="form.nama" :class="{ 'is-invalid': err('nama') }" placeholder="Nama mahasiswa" />
+            <small class="error-text">{{ err('nama') }}</small>
+          </div>
+          <div class="form-group">
+            <label for="oEksp">Ekspedisi *</label>
+            <select id="oEksp" v-model="form.ekspedisi" :class="{ 'is-invalid': err('ekspedisi') }">
+              <option value="">-- Pilih ekspedisi --</option>
+              <option v-for="e in ekspedisi" :key="e.kode" :value="e.kode">{{ namaEkspedisi(e) }}</option>
+            </select>
+            <small class="error-text">{{ err('ekspedisi') }}</small>
+          </div>
+          <div class="form-group">
+            <label for="oTgl">Tanggal Kirim *</label>
+            <div class="sort-group">
+              <input id="oTgl" type="date" v-model="form.tanggalKirim" :class="{ 'is-invalid': err('tanggalKirim') }" />
+              <button type="button" class="btn btn-outline btn-sm" @click="isiHariIni">Hari ini</button>
+            </div>
+            <!-- [FILTER] tanggal: 25 Agustus 2025 -->
+            <small class="hint">{{ form.tanggalKirim | tanggal }}</small>
+            <small class="error-text">{{ err('tanggalKirim') }}</small>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="oPaket">Paket Bahan Ajar *</label>
+          <select id="oPaket" v-model="form.paketKode" :class="{ 'is-invalid': err('paketKode') }">
+            <option value="">-- Pilih paket --</option>
+            <option v-for="p in paket" :key="p.kode" :value="p.kode">{{ p.kode }} – {{ p.nama }}</option>
+          </select>
+          <small class="error-text">{{ err('paketKode') }}</small>
+          <!-- [v-if] detail isi paket muncul setelah paket dipilih -->
+          <div class="paket-detail fade-in" v-if="paketTerpilih">
+            <strong>{{ paketTerpilih.nama }}</strong> berisi {{ isiPaket.length }} bahan ajar:
+            <ul>
+              <li v-for="(m, i) in isiPaket" :key="m.kode">{{ i + 1 }}. {{ m.kode }} – {{ m.judul }}</li>
+            </ul>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Total Harga</label>
+          <!-- [v-text + filter] total dalam Rupiah -->
+          <div class="total-box" v-text="$options.filters.rupiah(form.total)"></div>
+        </div>
+        <div class="modal-actions">
+          <button type="button" class="btn btn-outline" @click="reset">Reset</button>
+          <button type="submit" class="btn btn-primary" :disabled="submitted && !valid"><i class="bi bi-save"></i> Simpan DO</button>
+        </div>
+      </form>
+    </section>
+
+    <!-- Pratinjau ringkasan DO (reaktif dari v-model) -->
+    <section class="card">
+      <h2 class="card-title"><i class="bi bi-receipt"></i> Pratinjau DO</h2>
+      <dl class="detail-grid">
+        <dt>Nomor DO</dt><dd>{{ nomorDO }}</dd>
+        <dt>NIM</dt><dd>{{ form.nim || '-' }}</dd>
+        <dt>Nama</dt><dd>{{ form.nama || '-' }}</dd>
+        <dt>Ekspedisi</dt><dd>{{ labelEkspedisi || '-' }}</dd>
+        <dt>Paket</dt><dd>{{ paketTerpilih ? paketTerpilih.kode + ' – ' + paketTerpilih.nama : '-' }}</dd>
+        <dt>Tanggal Kirim</dt><dd>{{ form.tanggalKirim | tanggal }}</dd>
+        <dt>Total</dt><dd>{{ form.total | rupiah }}</dd>
+      </dl>
+      <div class="alert" :class="valid ? 'alert-success' : 'alert-info'" style="margin-top: 1rem">
+        <i class="bi" :class="valid ? 'bi-check-circle' : 'bi-info-circle'"></i>
+        {{ valid ? 'Data lengkap, siap disimpan.' : 'Lengkapi semua field bertanda * lalu klik Simpan DO.' }}
+      </div>
+    </section>
+  </div>
+</template>

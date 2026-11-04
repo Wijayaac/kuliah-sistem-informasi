@@ -1,0 +1,14 @@
+<template id="tpl-badge">
+  <!-- [v-on] mouseenter/mouseleave menampilkan tooltip catatan -->
+  <span class="badge-wrap" @mouseenter="hover = true" @mouseleave="hover = false" @focus="hover = true" @blur="hover = false" tabindex="0">
+    <!-- [v-if / v-else-if / v-else] simbol + warna status -->
+    <span v-if="status === 'Kosong'" class="status status-kosong"><i class="bi bi-x-octagon-fill"></i> Kosong</span>
+    <span v-else-if="status === 'Menipis'" class="status status-menipis"><i class="bi bi-exclamation-triangle-fill"></i> Menipis</span>
+    <span v-else class="status status-aman"><i class="bi bi-check-circle-fill"></i> Aman</span>
+    <!-- [v-show + v-html] tooltip catatanHTML saat hover -->
+    <span class="tooltip-box" v-show="hover && catatan" role="tooltip">
+      <small class="tooltip-title">Catatan</small>
+      <span v-html="catatan"></span>
+    </span>
+  </span>
+</template>
